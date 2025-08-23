@@ -265,8 +265,8 @@ header {
 }
 
 .navbar-toggle-container {
-    position: absolute;
-    top: 225px; /* Adjust top position as needed */
+    position: absolute; /* Changed to absolute */
+    bottom: 15px; /* Added */
     right: 15px;
     z-index: 1001;
 }
@@ -758,7 +758,6 @@ footer {
     /* Show the hamburger menu icon */
     .navbar-toggle {
         display: block;
-        position: static;
     }
 
     .carousel-container {
@@ -821,13 +820,12 @@ footer {
             </div>
             <div class="divider"></div>
         </div>
+        <div class="navbar-toggle-container">
+            <button class="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </header>
-
-    <div class="navbar-toggle-container">
-        <button class="navbar-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
 
     <div class="navbar-container">
         <div class="container">
