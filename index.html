@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Talent Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #A38C61; /* Dark Creme */
+    --secondary-color: #B8A881; /* Medium Creme */
+    --tertiary-color: #D4C9A8; /* Light Creme for nested menu */
+    --accent-color: #E74C3C; /* Retain for highlight */
+    --light-color: #F8F5EC; /* Lightest Creme */
+    --dark-color: #3B3128; /* Dark Brown/Coffee */
+    --text-color: #3B3128;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: #FDFCF7;
+    color: var(--text-color);
+    line-height: 1.4;
+    font-size: 14px;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+header {
+    background-color: transparent;
+    color: white;
+    padding: 15px 0;
+    box-shadow: var(--shadow);
+    position: relative; /* Add this to position the image relative to the header */
+    overflow: hidden; /* Hide any overflow from the image */
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Place the image behind the content */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 200px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.site-subheading {
+    font-size: 0.9rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    margin: 8px 0;
+}
+
+.navbar-container {
+    background-color: var(--light-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    position: relative;
+}
+
+.navbar > li {
+    position: relative;
+}
+
+.navbar > li > a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--dark-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.navbar > li:hover > a, 
+.navbar > li.active > a,
+.has-dropdown.show-submenu > a {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.has-dropdown > a {
+    display: flex;
+    align-items: center;
+}
+
+.has-dropdown > a i,
+.has-dropdown > a .equals-icon {
+    margin-left: 5px;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.has-dropdown > a .equals-icon {
+    display: none;
+}
+
+.has-dropdown.show-submenu > a i {
+    display: none;
+}
+
+.has-dropdown.show-submenu > a .equals-icon {
+    display: inline-block;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--light-color);
+    min-width: 600px;
+    box-shadow: var(--shadow);
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    border-top: 2px solid var(--secondary-color);
+}
+
+.dropdown .dropdown {
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--secondary-color);
+    border-left: 2px solid var(--primary-color);
+}
+
+.has-dropdown.show-submenu > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown li {
+    position: relative;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--dark-color);
+    text-decoration: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.dropdown li a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.navbar > li.show-submenu > a {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.dropdown .has-dropdown > .dropdown {
+    position: absolute;
+    top: -10px;
+    left: 100%;
+    margin-left: 1px;
+    transform: translateY(10px);
+    grid-template-columns: repeat(2, 1fr);
+    min-width: 350px;
+    border-left: 2px solid var(--primary-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.dropdown .has-dropdown.show-submenu > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 1100;
+}
+
+.dropdown-right-align .dropdown .has-dropdown > .dropdown {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 1px;
+    border-left: none;
+    border-right: 2px solid var(--primary-color);
+}
+
+.donate-button {
+    background-color: var(--accent-color);
+    color: white !important;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.donate-button:hover {
+    background-color: #c0392b !important;
+}
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: var(--dark-color);
+    cursor: pointer;
+    padding: 8px;
+}
+
+.dropdown-right-align .dropdown {
+    left: auto;
+    right: 0;
+}
+
+.carousel-container {
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    height: 400px;
+}
+
+.carousel-slide {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-slide.active {
+    display: block;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 15px;
+}
+
+.slide-title {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.slide-description {
+    font-size: 0.9rem;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 15px;
+}
+
+.carousel-control {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background-color: white;
+}
+
+.main-content {
+    min-height: 250px;
+    padding: 20px;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin: 15px 0;
+}
+
+.content-placeholder {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 30px 0;
+}
+
+.content-placeholder i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #bdc3c7;
+}
+
+/* New styles for dynamic content */
+.dynamic-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+.dynamic-content p {
+    margin-bottom: 1rem;
+}
+.dynamic-content .media-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.dynamic-content .media-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    text-align: center;
+}
+.dynamic-content .media-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+.dynamic-content .media-item video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+.dynamic-content .media-item h4 {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.about-section {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    padding: 30px 0;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 30px 0 15px;
+}
+
+.footer-content-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-box {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.footer-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #2e86de; /* A shade of blue for the line */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.footer-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.footer-box h3::after {
+    display: none;
+}
+
+.contact-info p {
+    margin-bottom: 5px;
+}
+
+.footer-links {
+    list-style: none;
+    text-align: center;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-color);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+.mobile-menu-container {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: var(--light-color);
+    z-index: 10000;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+}
+
+.mobile-menu-container.show {
+    left: 0;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu li a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--dark-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.mobile-menu li a.donate-button {
+    background-color: var(--accent-color);
+    color: white !important;
+}
+
+.mobile-menu .menu-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mobile-menu .submenu {
+    display: none;
+    list-style: none;
+    background-color: var(--tertiary-color);
+    padding-left: 15px;
+}
+
+.mobile-menu .submenu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu .submenu li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu .submenu .submenu {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu .has-submenu.active > .submenu {
+    display: block;
+}
+
+/* Mobile menu icon toggling */
+.mobile-menu .has-submenu .menu-toggle .equals-icon {
+    display: none;
+}
+
+.mobile-menu .has-submenu.active .menu-toggle i {
+    display: none;
+}
+
+.mobile-menu .has-submenu.active .menu-toggle .equals-icon {
+    display: inline-block;
+}
+
+/* --- DESKTOP STYLES --- */
+@media (min-width: 993px) {
+    .navbar {
+        display: flex !important;
+    }
+
+    .mobile-menu-overlay,
+    .mobile-menu-container {
+        display: none !important;
+    }
+}
+
+/* --- TABLET/MEDIUM SCREEN STYLES --- */
+@media (max-width: 992px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .dropdown {
+        min-width: 500px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- MOBILE STYLES --- */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+
+    /* Hide desktop nav on mobile */
+    .navbar {
+        display: none !important;
+    }
+
+    /* Show the hamburger menu icon */
+    .navbar-toggle {
+        display: block;
+        position: static;
+    }
+
+    .carousel-container {
+        height: 300px;
+    }
+
+    .footer-content-boxes {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-box {
+        min-width: unset;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* --- SMALL MOBILE STYLES --- */
+@media (max-width: 576px) {
+    .site-heading {
+        font-size: 1.5rem;
+    }
+
+    .site-subheading {
+        font-size: 0.8rem;
+    }
+
+    .logo img {
+        height: 80px;
+    }
+
+    .carousel-container {
+        height: 200px;
+    }
+
+    .slide-title {
+        font-size: 1rem;
+    }
+
+    .slide-description {
+        font-size: 0.8rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Header.jpg" alt="Header Background" class="header-bg">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo.png" alt="STA Logo">
+                    <div class="logo-text">
+                        <h1 class="site-heading">Sports Talent Academy</h1>
+                        <p class="site-subheading">Nurturing Future Champions</p>
+                    </div>
+                </div>
+                <button class="navbar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </header>
+
+    <div class="navbar-container">
+        <div class="container">
+            <ul class="navbar">
+                <li><a href="#" data-content-key="home">Home</a></li>
+                
+                <li class="has-dropdown">
+                    <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="advisory-committee">Advisory Committee</a></li>
+                        <li><a href="#" data-content-key="objectives">Objectives</a></li>
+                        <li><a href="#" data-content-key="profile-sta">Profile STA</a></li>
+                        <li><a href="#" data-content-key="achievement">Achievement</a></li>
+                        <li><a href="#" data-content-key="events-activities">Events & Activities</a></li>
+                        <li><a href="#" data-content-key="child-safeguarding">Child Safeguarding Policy of STA</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Recognition <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                            <ul class="dropdown">
+                                <li><a href="#" data-content-key="affiliation">AFFILIATION</a></li>
+                                <li><a href="#" data-content-key="ngo-darpan">NGO DARPAN</a></li>
+                                <li><a href="#" data-content-key="income-tax">INCOME TAX DEPARTMENT</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" data-content-key="audit-report">Audit Report</a></li>
+                        <li><a href="#" data-content-key="future-vision">Future Vision</a></li>
+                        <li><a href="#" data-content-key="coaches">Coaches</a></li>
+                        <li><a href="#" data-content-key="theme-song">Theme Song</a></li>
+                        <li><a href="#" data-content-key="players">Players</a></li>
+                        <li><a href="#" data-content-key="memento">Memento</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="#" data-content-key="wish-messages">Wish Messages</a></li>
+                <li><a href="#" data-content-key="letters-fixtures">Letters & Fixtures</a></li>
+                <li><a href="#" data-content-key="news-clippings">News clippings</a></li>
+                
+                <li class="has-dropdown">
+                    <a href="#">Welfare activities <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="welfare-blood-camp">Blood detecting camp</a></li>
+                        <li><a href="#" data-content-key="welfare-yoga-2023">International Yoga day-2023</a></li>
+                        <li><a href="#" data-content-key="welfare-mts-coaching">MTS Coaching</a></li>
+                        <li><a href="#" data-content-key="welfare-water-project">Water project preparation</a></li>
+                        <li><a href="#" data-content-key="welfare-environment-day">World Environment Day-23</a></li>
+                        <li><a href="#" data-content-key="welfare-tribal-day">World Tribal Day-23</a></li>
+                    </ul>
+                </li>
+                
+                <li class="has-dropdown">
+                    <a href="#">Certificates <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="certificates-district-athletics">Athletics Meet District-21-22</a></li>
+                        <li><a href="#" data-content-key="certificates-subdivision-athletics">Athletics Meet Sub-division-21-22</a></li>
+                        <li><a href="#" data-content-key="certificates-sr-football">Sr District Football-21-22</a></li>
+                    </ul>
+                </li>
+                
+                <li class="has-dropdown">
+                    <a href="#">Publications <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="publications-editorial-board">Editorial Board</a></li>
+                        <li><a href="#" data-content-key="publications-suhriti">Suhriti</a></li>
+                        <li><a href="#" data-content-key="publications-website-opening">Website, magazine opening and tracksuit opening</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="#" data-content-key="announcement">Announcement</a></li>
+                
+                <li class="has-dropdown dropdown-right-align">
+                    <a href="#">Photos <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="photos-foundation-day">Foundation Day & 1st Anniversary</a></li>
+                        <li><a href="#" data-content-key="photos-15th-august-22">15th August-22</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Football Kits Distribution <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                            <ul class="dropdown">
+                                <li><a href="#" data-content-key="photos-kits-distribution">Football kits distribution</a></li>
+                                <li><a href="#" data-content-key="photos-boot-distribution">Boot distribution among Sub-Juniors sponsored by Arup Das (IYSA)</a></li>
+                                <li><a href="#" data-content-key="photos-jersey-pant-distribution">Jersey pant distribution among the Sub-juniors</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">Tournaments <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                            <ul class="dropdown">
+                                <li class="has-dropdown">
+                                    <a href="#">2022 <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-dwaranda">Dwaranda Tournament</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-partha-bhowmic">Partha Bhowmic Memorial Cup-22</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-raipur">Raipur Tournament</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-inter-club">Inter-Club Senior Second Division Football League 2022-23</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-borsul">Borsul Tournament-2021</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-bahiri">Bahiri Tournament-2022</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-dhansara">Dhansara Tournament -2022</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2022-kabiguru">Kabiguru Cup-2022</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="#">2023 <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="#" data-content-key="photos-tournaments-2023-gushkara">Gushkara Tournament-2023</a></li>
+                                        <li><a href="#" data-content-key="photos-tournaments-2023-league-match">League match in between us</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" data-content-key="photos-prize-day">Prize day programme</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Exhibition Match <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                            <ul class="dropdown">
+                                <li><a href="#" data-content-key="photos-exhibition-match-1">Exhibition match</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-makrampur">Exhibition match against Makrampur team</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-nepal">Exhibition (International) Match STA Junior Vs DAV Kathmandu Nepal</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-kankutia">Exhibition match in between STA vs Kankutia</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-kick-for-help">Exhibition match STA (Sr) Vs Kick for help</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-ghosaldanga">Exhibition match STA (Sub-junior) Vs Ghosaldanga</a></li>
+                                <li><a href="#" data-content-key="photos-exhibition-match-visva-bharati">Exhibition match STA Vs Visva-Bharati Silpatsab-2023</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" data-content-key="photos-group-photos">Group photos</a></li>
+                        <li><a href="#" data-content-key="photos-film-at-gitanjali">Iscabon Film at Gitanjali Cinema Hall</a></li>
+                        <li><a href="#" data-content-key="photos-practice-session">Practice session</a></li>
+                        <li><a href="#" data-content-key="photos-special-practice-session">Special practice session</a></li>
+                        <li><a href="#" data-content-key="photos-hool-dibas">Hool Dibas</a></li>
+                        <li><a href="#" data-content-key="photos-picnic">Picnic</a></li>
+                        <li><a href="#" data-content-key="photos-world-cup-match">World Cup Match, Felicitation of Anik Ghosh & Dinner</a></li>
+                        <li><a href="#" data-content-key="photos-coaches-training">21 days Coaches training programme at Kalyani</a></li>
+                        <li><a href="#" data-content-key="photos-bar-puja">Bar Puja-2023</a></li>
+                        <li><a href="#" data-content-key="photos-grassroot-day">Grassroot Day-23</a></li>
+                        <li><a href="#" data-content-key="photos-nabanalanda-prize">Nabanalanda Prize</a></li>
+                    </ul>
+                </li>
+                
+                <li class="has-dropdown dropdown-right-align">
+                    <a href="#">Videos <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                    <ul class="dropdown">
+                        <li><a href="#" data-content-key="videos-15th-august-22">15th-August-22</a></li>
+                        <li><a href="#" data-content-key="videos-speech-dr-koushik-ghosh">Speech at different occasions by Dr Koushik Ghosh</a></li>
+                        <li><a href="#" data-content-key="videos-speech-dignitaries">Speech by Dignitaries</a></li>
+                        <li class="has-dropdown">
+                            <a href="#">Special Day <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
+                            <ul class="dropdown">
+                                <li><a href="#" data-content-key="videos-special-day-foundation">Foundation Day -1st Anniversary</a></li>
+                                <li><a href="#" data-content-key="videos-special-day-environmental">Environmental day -2023</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" data-content-key="videos-united-sports-club">United Sports Club</a></li>
+                        <li><a href="#" data-content-key="videos-yoga-day-2022">Celebration of Yoga Day-2022</a></li>
+                        <li><a href="#" data-content-key="videos-badna-festival">Badna Festival</a></li>
+                        <li><a href="#" data-content-key="videos-iskabon-film">Iskabon-Film at Gitanjali Hall</a></li>
+                        <li><a href="#" data-content-key="videos-sub-junior-practice">Sub-junior practice session</a></li>
+                        <li><a href="#" data-content-key="videos-practice-dr-khetmalis">Special practice session by Dr. Mahesh Khetmalis</a></li>
+                        <li><a href="#" data-content-key="videos-practice-dr-jewel">Special practice session by Dr. Shahidul Islam Jewel</a></li>
+                        <li><a href="#" data-content-key="videos-practice-session">Practice session</a></li>
+                        <li><a href="#" data-content-key="videos-practice-match-dhansara">Practice match at Dhansara</a></li>
+                        <li><a href="#" data-content-key="videos-challenge-tournament-2023">CHALLENGE FOOTBALL TOURNAMENT 2023 AT DEWANGANJ, BIRBHUM</a></li>
+                        <li><a href="#" data-content-key="videos-bar-puja">Bar puja</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="#" data-content-key="contact">Contact</a></li>
+                <li><a href="#" class="donate-button" data-content-key="donate-us">Donate Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mobile-menu-overlay"></div>
+    
+    <div class="mobile-menu-container">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu" id="mobile-menu">
+            </ul>
+    </div>
+
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <img src="https://placehold.co/1200x450/B8A881/white?text=Youth+Football+Training" alt="Youth Football Training">
+                <div class="slide-content">
+                    <h2 class="slide-title">Youth Football Training</h2>
+                    <p class="slide-description">Developing young talents with professional coaching techniques</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://placehold.co/1200x450/A38C61/white?text=Community+Outreach" alt="Community Outreach">
+                <div class="slide-content">
+                    <h2 class="slide-title">Community Outreach</h2>
+                    <p class="slide-description">Engaging with local communities to promote sports and wellness</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://placehold.co/1200x450/B8A881/white?text=Tournaments+%26+Events" alt="Tournaments & Events">
+                <div class="slide-content">
+                    <h2 class="slide-title">Tournaments & Events</h2>
+                    <p class="slide-description">Participating in local and regional competitions</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <div class="carousel-control prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="carousel-control next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <div class="dot active" data-slide="0"></div>
+                <div class="dot" data-slide="1"></div>
+                <div class="dot" data-slide="2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content" id="main-content">
+            <div class="content-placeholder">
+                <i class="fas fa-file-alt"></i>
+                <h2>Content Area</h2>
+                <p>This area will display content based on your selection from the navigation menu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="about-section">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Sports Talent Academy (STA) is dedicated to identifying and nurturing young sporting talents from grassroots levels. We provide professional training, facilities, and opportunities for young athletes to excel in their chosen sports.</p>
+                    <p>Founded with a vision to create a sporting culture that produces world-class athletes, STA focuses on holistic development that includes physical training, mental conditioning, and academic support.</p>
+                    <p>Our academy has produced several athletes who have represented at district, state, and national levels, bringing pride to our community.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://placehold.co/600x400/F8F5EC/3B3128?text=STA+Team" alt="STA Team">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content-boxes">
+                <div class="footer-box">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-content-key="home">Home</a></li>
+                        <li><a href="#" data-content-key="profile-sta">About Us</a></li>
+                        <li><a href="#" data-content-key="donate-us">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-box">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p>Sports Talent Academy</p>
+                        <p>123 Sports Avenue, Birbhum, WB</p>
+                        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                        <p><i class="fas fa-envelope"></i> info@sportstalentacademy.org</p>
+                    </div>
+                </div>
+                <div class="footer-box">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sports Talent Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // --- Content Data Model ---
+    // This object holds all the content for the dynamic pages.
+    // You can add or modify content here easily without changing the HTML structure.
+    const contentData = {
+        'home': {
+            title: 'Welcome to Sports Talent Academy',
+            text: '<p>Sports Talent Academy is dedicated to identifying and nurturing young sporting talents from grassroots levels. We provide professional training, facilities, and opportunities for young athletes to excel in their chosen sports.</p><p>Explore our site to learn more about our programs, achievements, and how you can support our mission.</p>'
+        },
+        'photos-tournaments-2022-dwaranda': {
+            title: 'Dwaranda Tournament 2022',
+            text: 'A collection of photos and videos from our participation in the exciting Dwaranda Tournament in 2022.',
+            images: [
+                { src: 'https://placehold.co/600x400/D4C9A8/3B3128?text=Dwaranda+Tournament+Photo+1', alt: 'Team photo at Dwaranda Tournament' },
+                { src: 'https://placehold.co/600x400/B8A881/white?text=Dwaranda+Tournament+Photo+2', alt: 'Action shot during the tournament' }
+            ],
+            videos: [
+                { src: 'https://www.w3schools.com/html/mov_bbb.mp4', title: 'Tournament Highlights' }
+            ]
+        },
+        'profile-sta': {
+            title: 'Profile of Sports Talent Academy',
+            text: 'Sports Talent Academy was founded with a vision to create a sporting culture that produces world-class athletes, STA focuses on holistic development that includes physical training, mental conditioning, and academic support. Our academy has produced several athletes who have represented at district, state, and national levels, bringing pride to our community.'
+        },
+        'coaches': {
+            title: 'Meet Our Coaches',
+            text: 'Our team of experienced and certified coaches are dedicated to providing the highest level of training and guidance to our athletes. Each coach brings a unique set of skills and passion for developing young talent.'
+        },
+        'contact': {
+            title: 'Contact Us',
+            text: 'Please use the information below to get in touch with us. We are always happy to answer your questions and provide more information about our academy.'
+        },
+         'donate-us': {
+            title: 'Support Sports Talent Academy',
+            text: 'Your generous contribution helps us provide better facilities, equipment, and opportunities for our young athletes. Every donation, no matter the size, makes a difference in nurturing future champions. Thank you for your support!',
+            button: { text: 'Proceed to Donate', href: '#' }
+        },
+        // Add more content objects here for each menu item
+    };
+
+    const mainContentDiv = document.getElementById('main-content');
+    const navbars = document.querySelectorAll('.navbar, .mobile-menu');
+
+    // Function to generate and load content dynamically
+    function loadContent(contentKey) {
+        const content = contentData[contentKey];
+        let contentHTML = '';
+
+        if (content) {
+            let mediaSection = '';
+            
+            // Check for and add images
+            if (content.images && content.images.length > 0) {
+                const imageHTML = content.images.map(img => `
+                    <div class="media-item">
+                        <img src="${img.src}" alt="${img.alt}">
+                        ${img.caption ? `<h4>${img.caption}</h4>` : ''}
+                    </div>
+                `).join('');
+                mediaSection += `<div class="media-container">${imageHTML}</div>`;
+            }
+            
+            // Check for and add videos
+            if (content.videos && content.videos.length > 0) {
+                const videoHTML = content.videos.map(vid => `
+                    <div class="media-item">
+                        <video controls>
+                            <source src="${vid.src}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        ${vid.title ? `<h4>${vid.title}</h4>` : ''}
+                    </div>
+                `).join('');
+                mediaSection += `<div class="media-container">${videoHTML}</div>`;
+            }
+
+            // Build the final HTML for the content area
+            contentHTML = `
+                <div class="dynamic-content">
+                    <h2>${content.title}</h2>
+                    <p>${content.text}</p>
+                    ${mediaSection}
+                    ${content.button ? `<a href="${content.button.href}" class="donate-button" style="display:inline-block; margin-top: 15px;">${content.button.text}</a>` : ''}
+                </div>
+            `;
+        } else {
+            // Default placeholder content if key is not found
+            contentHTML = `
+                <div class="content-placeholder">
+                    <i class="fas fa-file-alt"></i>
+                    <h2>Content Not Found</h2>
+                    <p>Content for this menu item is coming soon.</p>
+                </div>
+            `;
+        }
+
+        mainContentDiv.innerHTML = contentHTML;
+    }
+
+    // Event listener for the navigation menus (desktop and mobile)
+    navbars.forEach(navbar => {
+        navbar.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (link && link.dataset.contentKey) {
+                e.preventDefault(); // Prevent default link behavior
+                loadContent(link.dataset.contentKey);
+                closeMobileMenu(); // Close the menu on mobile after selection
+
+                // Remove active class from all nav items
+                document.querySelectorAll('.navbar li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to the clicked list item
+                if (link.closest('li')) {
+                    link.closest('li').classList.add('active');
+                }
+            }
+        });
+    });
+
+    // Initial content load on page load
+    loadContent('home');
+    document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+    
+    // Carousel functionality
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const nextButton = document.querySelector('.carousel-control.next');
+    let currentSlide = 0;
+    
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        currentSlide = (n + slides.length) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+    
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+    
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const slideIndex = parseInt(this.getAttribute('data-slide'));
+            showSlide(slideIndex);
+        });
+    });
+    
+    setInterval(nextSlide, 5000);
+    
+    // Desktop dropdown functionality
+    const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
+    
+    topLevelDropdowns.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.classList.add('show-submenu');
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.classList.remove('show-submenu');
+        });
+    });
+
+    const secondLevelDropdowns = document.querySelectorAll('.dropdown .has-dropdown > a');
+    
+    secondLevelDropdowns.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const parentItem = this.parentElement;
+            
+            const siblings = Array.from(parentItem.parentElement.children);
+            siblings.forEach(sibling => {
+                if (sibling !== parentItem && sibling.classList.contains('has-dropdown')) {
+                    sibling.classList.remove('show-submenu');
+                }
+            });
+            
+            parentItem.classList.toggle('show-submenu');
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.has-dropdown.show-submenu').forEach(item => {
+                if (item.closest('.dropdown')) {
+                    item.classList.remove('show-submenu');
+                }
+            });
+        }
+    });
+    
+    // Mobile menu functionality
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileMenuContainer = document.querySelector('.mobile-menu-container');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    function generateMobileMenu() {
+        const desktopMenu = document.querySelector('.navbar');
+        mobileMenu.innerHTML = '';
+        
+        const menuItems = desktopMenu.querySelectorAll(':scope > li');
+        
+        menuItems.forEach(item => {
+            const clonedItem = item.cloneNode(true);
+            
+            clonedItem.classList.remove('has-dropdown', 'show-submenu', 'dropdown-right-align');
+            
+            const dropdown = clonedItem.querySelector('.dropdown');
+            
+            if (dropdown) {
+                clonedItem.classList.add('has-submenu');
+                
+                const link = clonedItem.querySelector('a');
+                link.classList.add('menu-toggle');
+                
+                dropdown.classList.remove('dropdown');
+                dropdown.classList.add('submenu');
+                
+                const nestedDropdowns = dropdown.querySelectorAll('.dropdown');
+                nestedDropdowns.forEach(nested => {
+                    nested.classList.remove('dropdown');
+                    nested.classList.add('submenu');
+                    
+                    const parentItem = nested.closest('li');
+                    if (parentItem) {
+                        parentItem.classList.add('has-submenu');
+                        const parentLink = parentItem.querySelector('a');
+                        parentLink.classList.add('menu-toggle');
+                    }
+                });
+            }
+            
+            mobileMenu.appendChild(clonedItem);
+        });
+        
+        const mobileMenuToggles = mobileMenu.querySelectorAll('.menu-toggle');
+        
+        mobileMenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                const parentItem = this.parentElement;
+                
+                if (parentItem.classList.contains('has-submenu')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                const siblings = Array.from(parentItem.parentElement.children);
+                siblings.forEach(sibling => {
+                    if (sibling !== parentItem && sibling.classList.contains('has-submenu')) {
+                        sibling.classList.remove('active');
+                        
+                        const nestedSubmenus = sibling.querySelectorAll('.has-submenu');
+                        nestedSubmenus.forEach(nested => {
+                            nested.classList.remove('active');
+                        });
+                    }
+                });
+                
+                parentItem.classList.toggle('active');
+            });
+        });
+    }
+    
+    function toggleMobileMenu() {
+        mobileMenuOverlay.style.display = 'block';
+        mobileMenuContainer.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+        mobileMenuContainer.classList.remove('show');
+        setTimeout(() => {
+            mobileMenuOverlay.style.display = 'none';
+        }, 300);
+        document.body.style.overflow = 'auto';
+        
+        const openSubmenus = mobileMenu.querySelectorAll('.has-submenu.active');
+        openSubmenus.forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+    
+    navbarToggle.addEventListener('click', toggleMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    
+    generateMobileMenu();
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
+});
+    </script>
+    <script>
+        function isMobileDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+        }
+
+        function blockDesktopMode() {
+            if (isMobileDevice() && window.innerWidth > 992) {
+                const body = document.body;
+                body.style.display = 'flex';
+                body.style.justifyContent = 'center';
+                body.style.alignItems = 'center';
+                body.style.flexDirection = 'column';
+                body.style.height = '100vh';
+                body.style.textAlign = 'center';
+                body.style.padding = '20px';
+                body.innerHTML = `
+                    <div style="max-width: 600px;">
+                        <i class="fas fa-desktop" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        <h1 style="font-size: 1.5rem; margin-top: 15px; color: var(--dark-color);">Desktop Mode Not Supported on Mobile</h1>
+                        <p style="font-size: 1rem; margin-top: 10px; color: var(--text-color);">This page is optimized for mobile viewing only on mobile devices. Please switch back to the mobile view or access the website from a desktop computer.</p>
+                    </div>
+                `;
+                // Remove the event listener to prevent further checks
+                window.removeEventListener('resize', blockDesktopMode);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', blockDesktopMode);
+        window.addEventListener('resize', blockDesktopMode);
+    </script>
+</body>
+</html>
