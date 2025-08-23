@@ -264,19 +264,32 @@ header {
     background-color: #c0392b !important;
 }
 
-.navbar-toggle-container {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    z-index: 1001;
+/* New CSS for the menu bar container */
+.menu-bar-container {
+    background-color: var(--light-color);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.menu-text {
+    font-weight: 500;
+    color: var(--dark-color);
+    margin-right: 10px;
 }
 
 .navbar-toggle {
     display: none;
-    background-color: transparent; /* Transparent background */
-    border: 1px solid var(--text-color); /* Small transparent box effect */
+    background-color: var(--tertiary-color); /* Washout box color */
+    border: none;
     font-size: 1.3rem;
-    color: black; /* Black bars */
+    color: var(--dark-color); /* Black bars */
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 4px;
@@ -720,7 +733,7 @@ footer {
 
     .mobile-menu-overlay,
     .mobile-menu-container,
-    .navbar-toggle-container {
+    .menu-bar-container {
         display: none !important;
     }
 }
@@ -820,12 +833,16 @@ footer {
             </div>
             <div class="divider"></div>
         </div>
-        <div class="navbar-toggle-container">
+    </header>
+
+    <div class="menu-bar-container">
+        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
+            <span class="menu-text">Menu</span>
             <button class="navbar-toggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-    </header>
+    </div>
 
     <div class="navbar-container">
         <div class="container">
