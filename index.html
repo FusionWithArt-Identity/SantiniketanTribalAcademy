@@ -750,9 +750,23 @@ footer {
         display: none !important;
     }
 
+    .header-content {
+        display: flex;
+        align-items: center;
+    }
+
     .logo {
-        flex: 1;
-        justify-content: space-around;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-right: 20px;
+    }
+
+    .header-text-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: center;
     }
 }
 
@@ -852,6 +866,8 @@ footer {
             <div class="header-content">
                 <div class="logo">
                     <img src="Logo.png" alt="STA Logo">
+                </div>
+                <div class="header-text-container">
                     <div class="logo-text">
                         <h1 class="site-heading">Sports Talent Academy</h1>
                         <p class="site-subheading">Nurturing Future Champions</p>
