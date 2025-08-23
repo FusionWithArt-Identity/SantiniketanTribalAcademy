@@ -507,7 +507,8 @@ header {
 
 .about-image img {
     width: 100%;
-    height: 100%;
+    max-width: 100%; /* Added rule to prevent overflow */
+    height: auto; /* Added rule to maintain aspect ratio */
     object-fit: cover;
 }
 
