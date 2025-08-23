@@ -506,10 +506,10 @@ header {
 }
 
 .about-image img {
-    width: 100%;
-    max-width: 100%; /* Added rule to prevent overflow */
-    height: auto; /* Added rule to maintain aspect ratio */
-    object-fit: cover;
+    max-width: 100%;
+    width: 100%; /* Force image to take full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space below the image */
 }
 
 footer {
@@ -788,6 +788,16 @@ footer {
         min-width: unset;
         width: 100%;
         text-align: center;
+    }
+
+    /* Change to column layout for About Us section on mobile */
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text, .about-image {
+        min-width: 100%;
+        margin-bottom: 15px; /* Add some space between text and image */
     }
 }
 
