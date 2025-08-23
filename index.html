@@ -264,14 +264,22 @@ header {
     background-color: #c0392b !important;
 }
 
+.navbar-toggle-container {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+}
+
 .navbar-toggle {
     display: none;
-    background: none;
+    background-color: var(--light-color);
     border: none;
     font-size: 1.3rem;
-    color: var(--dark-color);
+    color: white;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 .dropdown-right-align .dropdown {
@@ -711,7 +719,8 @@ footer {
     }
 
     .mobile-menu-overlay,
-    .mobile-menu-container {
+    .mobile-menu-container,
+    .navbar-toggle-container {
         display: none !important;
     }
 }
@@ -732,9 +741,9 @@ footer {
 @media (max-width: 768px) {
     .header-content {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        text-align: left;
+        text-align: center;
     }
 
     .logo {
@@ -809,11 +818,13 @@ footer {
                         <p class="site-subheading">Nurturing Future Champions</p>
                     </div>
                 </div>
-                <button class="navbar-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
             <div class="divider"></div>
+        </div>
+        <div class="navbar-toggle-container">
+            <button class="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
