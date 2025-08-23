@@ -62,6 +62,7 @@ header {
 .header-content {
     display: flex;
     align-items: center;
+    justify-content: flex-start; /* Aligned to the left */
 }
 
 .logo {
@@ -71,7 +72,7 @@ header {
 
 .logo img {
     height: 200px;
-    margin-right: 10px;
+    margin-right: 20px;
     border-radius: 50%;
 }
 
@@ -81,28 +82,15 @@ header {
 }
 
 .site-heading {
-    font-size: 1.8rem;
+    font-size: 2.5rem; /* Increased font size */
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 8px; /* Increased gap */
-    text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000,
-        3px 3px 5px rgba(0,0,0,0.5);
 }
 
 .site-subheading {
-    font-size: 0.9rem;
+    font-size: 1.2rem; /* Increased font size */
     font-weight: 300;
     opacity: 0.9;
-    text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000,
-        3px 3px 5px rgba(0,0,0,0.5);
 }
 
 .divider {
@@ -276,35 +264,14 @@ header {
     background-color: #c0392b !important;
 }
 
-/* New CSS for the menu bar container */
-.menu-bar-container {
-    background-color: var(--light-color);
-    box-shadow: var(--shadow);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 8px 15px;
-    margin-bottom: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.menu-text {
-    font-weight: 500;
-    color: var(--dark-color);
-    margin-right: 10px;
-}
-
 .navbar-toggle {
     display: none;
-    background-color: var(--tertiary-color); /* Washout box color */
+    background: none;
     border: none;
     font-size: 1.3rem;
-    color: var(--dark-color); /* Black bars */
+    color: var(--dark-color);
     cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 8px;
 }
 
 .dropdown-right-align .dropdown {
@@ -424,7 +391,7 @@ header {
 .content-placeholder {
     text-align: center;
     color: #7f8c8d;
-    padding: 30px 15px; /* Updated padding for horizontal spacing */
+    padding: 30px 0;
 }
 
 .content-placeholder i {
@@ -473,7 +440,7 @@ header {
 .about-section {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: white;
-    padding: 30px 15px; /* Updated padding for horizontal spacing */
+    padding: 30px 0;
     margin: 15px 0;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -518,10 +485,9 @@ header {
 }
 
 .about-image img {
-    max-width: 100%;
-    width: 100%; /* Force image to take full width of its container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove any extra space below the image */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 footer {
@@ -745,28 +711,8 @@ footer {
     }
 
     .mobile-menu-overlay,
-    .mobile-menu-container,
-    .menu-bar-container {
+    .mobile-menu-container {
         display: none !important;
-    }
-
-    .header-content {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-        margin-right: 20px;
-    }
-
-    .header-text-container {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        align-items: center;
     }
 }
 
@@ -785,8 +731,9 @@ footer {
 /* --- MOBILE STYLES --- */
 @media (max-width: 768px) {
     .header-content {
-        justify-content: space-between;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         text-align: left;
     }
 
@@ -802,6 +749,7 @@ footer {
     /* Show the hamburger menu icon */
     .navbar-toggle {
         display: block;
+        position: static;
     }
 
     .carousel-container {
@@ -818,16 +766,6 @@ footer {
         min-width: unset;
         width: 100%;
         text-align: center;
-    }
-
-    /* Change to column layout for About Us section on mobile */
-    .about-content {
-        flex-direction: column;
-    }
-
-    .about-text, .about-image {
-        min-width: 100%;
-        margin-bottom: 15px; /* Add some space between text and image */
     }
 }
 
@@ -866,26 +804,18 @@ footer {
             <div class="header-content">
                 <div class="logo">
                     <img src="Logo.png" alt="STA Logo">
-                </div>
-                <div class="header-text-container">
                     <div class="logo-text">
                         <h1 class="site-heading">Sports Talent Academy</h1>
                         <p class="site-subheading">Nurturing Future Champions</p>
                     </div>
                 </div>
+                <button class="navbar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
             <div class="divider"></div>
         </div>
     </header>
-
-    <div class="menu-bar-container">
-        <div class="container" style="display: flex; justify-content: flex-end; align-items: center;">
-            <span class="menu-text">Menu</span>
-            <button class="navbar-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
 
     <div class="navbar-container">
         <div class="container">
