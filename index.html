@@ -62,7 +62,6 @@ header {
 .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .logo {
@@ -85,7 +84,7 @@ header {
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 5px; /* Increased gap */
+    margin-bottom: 8px; /* Increased gap */
     text-shadow:
         -1px -1px 0 #000,
         1px -1px 0 #000,
@@ -751,8 +750,9 @@ footer {
         display: none !important;
     }
 
-    .logo-text {
-        text-align: center;
+    .logo {
+        flex: 1;
+        justify-content: space-around;
     }
 }
 
@@ -771,10 +771,9 @@ footer {
 /* --- MOBILE STYLES --- */
 @media (max-width: 768px) {
     .header-content {
+        justify-content: space-between;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        text-align: left;
     }
 
     .logo {
