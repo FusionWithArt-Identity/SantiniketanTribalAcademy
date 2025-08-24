@@ -1391,7 +1391,6 @@ footer {
 
     const mainContentDiv = document.getElementById('main-content');
     const navbars = document.querySelectorAll('.navbar, .mobile-menu');
-    const placeholderHTML = mainContentDiv.innerHTML; // Store initial placeholder
 
     function loadContent(contentKey) {
         const content = contentData[contentKey];
@@ -1442,8 +1441,10 @@ footer {
         }
 
         mainContentDiv.innerHTML = contentHTML;
-        // Focus on the main content area after loading new content
-        mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Scroll to the content area only if the content is not 'home'
+        if (contentKey !== 'home') {
+            mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     function closeAllDropdowns() {
@@ -1462,20 +1463,23 @@ footer {
 
             const contentKey = link.dataset.contentKey;
 
-            // MODIFICATION START: Added special handling for the "home" link
+            // Handle the Home button click
             if (contentKey === 'home') {
                 e.preventDefault();
                 closeAllDropdowns();
                 closeMobileMenu();
-                mainContentDiv.innerHTML = placeholderHTML; // Reset content area
+                loadContent('home');
+                sessionStorage.removeItem('currentContentKey'); // Remove state to revert to default
                 window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+                // Set home link as active
+                document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
             } 
-            // MODIFICATION END
-
+            // Handle other content links
             else if (link && !link.parentElement.classList.contains('has-dropdown') && contentKey) {
                 e.preventDefault();
                 closeAllDropdowns();
                 loadContent(contentKey);
+                sessionStorage.setItem('currentContentKey', contentKey); // Save state
                 closeMobileMenu();
 
                 document.querySelectorAll('.navbar li').forEach(item => {
@@ -1488,13 +1492,27 @@ footer {
             } else if (link && contentKey) {
                  // For dropdown parent links that also load content
                 loadContent(contentKey);
+                sessionStorage.setItem('currentContentKey', contentKey); // Save state
             }
         });
     });
 
-    // MODIFICATION: Removed initial content loading and active class for 'home'
-    // loadContent('home');
-    // document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+    // --- PAGE INITIALIZATION LOGIC ---
+    // Check for saved state in sessionStorage on page load
+    const savedContentKey = sessionStorage.getItem('currentContentKey');
+    if (savedContentKey) {
+        // If state is found, load that content
+        loadContent(savedContentKey);
+        // Set the corresponding link to active
+        const activeLink = document.querySelector(`.navbar a[data-content-key="${savedContentKey}"]`);
+        if (activeLink && activeLink.closest('li')) {
+            activeLink.closest('li').classList.add('active');
+        }
+    } else {
+        // If no state is found (first visit or after clicking home), load the default 'home' content
+        loadContent('home');
+        document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+    }
 
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
