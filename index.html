@@ -1504,21 +1504,16 @@ footer {
         // If state is found, load that content
         loadContent(savedContentKey);
         
-        // Find the active link and restore the visual "focused" state for it and its parents.
+        // Find the active link to determine which top-level tab to highlight.
         const activeLink = document.querySelector(`.navbar a[data-content-key="${savedContentKey}"]`);
         if (activeLink) {
-            // Highlight the direct parent li of the link itself
-            const directParentLi = activeLink.closest('li');
-            if (directParentLi) {
-                directParentLi.classList.add('active');
+            // Find the top-level list item that contains the active link.
+            const topLevelLi = activeLink.closest('.navbar > li');
+
+            // If a top-level li is found, add the 'active' class to it.
+            if (topLevelLi) {
+                topLevelLi.classList.add('active');
             }
-            
-            // Find all ancestor dropdown menus and open them to make the active link visible
-            document.querySelectorAll('.navbar .has-dropdown').forEach(dropdown => {
-                if (dropdown.contains(activeLink)) {
-                    dropdown.classList.add('show-submenu', 'active');
-                }
-            });
         }
 
     } else {
