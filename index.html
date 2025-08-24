@@ -169,7 +169,7 @@ header {
 }
 
 /* MODIFIED: Highlight state for parent tabs */
-.navbar > li:hover > a, 
+.navbar > li:hover > a,
 .navbar > li.active > a {
     background-color: var(--secondary-color);
     color: white;
@@ -509,6 +509,8 @@ header {
     /* FIX 1: Added word-wrap to prevent overflow on small screens */
     word-wrap: break-word;
     overflow-wrap: break-word;
+    /* MODIFICATION 1: Increased font size for Home section text */
+    font-size: 16px;
 }
 .dynamic-content .media-container {
     display: grid;
@@ -575,6 +577,11 @@ header {
 .about-text {
     flex: 1;
     min-width: 280px;
+}
+
+/* MODIFICATION 1: Increased font size for About Us section text */
+.about-text p {
+    font-size: 16px;
 }
 
 .about-image {
@@ -889,7 +896,7 @@ footer {
     .navbar {
         display: flex !important;
     }
-    
+
     .logo img {
         height: 200px;
         margin-right: 50px;
@@ -906,7 +913,7 @@ footer {
     .site-subheading {
         margin-top: 10px;
     }
-    
+
     /* UPDATED: Increase font size for desktop headers */
     .site-heading {
         font-size: 2.5rem;
@@ -1006,7 +1013,7 @@ footer {
 </head>
 <body>
     <audio id="Web-tune" src="Web-tune (Ekla Cholo).mp3" loop></audio>
-    
+
     <header>
         <img src="Header.jpg" alt="Header Background" class="header-bg">
         <div class="container">
@@ -1036,7 +1043,7 @@ footer {
         <div class="container">
             <ul class="navbar">
                 <li><a href="#" data-content-key="home"><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
-                
+
                 <li class="has-dropdown">
                     <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1062,11 +1069,11 @@ footer {
                         <li><a href="#" data-content-key="memento">Memento</a></li>
                     </ul>
                 </li>
-                
+
                 <li><a href="#" data-content-key="wish-messages">Wish Messages</a></li>
                 <li><a href="#" data-content-key="letters-fixtures">Letters & Fixtures</a></li>
                 <li><a href="#" data-content-key="news-clippings">News clippings</a></li>
-                
+
                 <li class="has-dropdown">
                     <a href="#">Welfare activities <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1078,7 +1085,7 @@ footer {
                         <li><a href="#" data-content-key="welfare-tribal-day">World Tribal Day-23</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="has-dropdown">
                     <a href="#">Certificates <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1087,7 +1094,7 @@ footer {
                         <li><a href="#" data-content-key="certificates-sr-football">Sr District Football-21-22</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="has-dropdown">
                     <a href="#">Publications <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1096,9 +1103,9 @@ footer {
                         <li><a href="#" data-content-key="publications-website-opening">Website, magazine opening and tracksuit opening</a></li>
                     </ul>
                 </li>
-                
+
                 <li><a href="#" data-content-key="announcement">Announcement</a></li>
-                
+
                 <li class="has-dropdown dropdown-right-align">
                     <a href="#">Photos <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1163,7 +1170,7 @@ footer {
                         <li><a href="#" data-content-key="photos-nabanalanda-prize">Nabanalanda Prize</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="has-dropdown dropdown-right-align">
                     <a href="#">Videos <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1190,7 +1197,7 @@ footer {
                         <li><a href="#" data-content-key="videos-bar-puja">Bar puja</a></li>
                     </ul>
                 </li>
-                
+
                 <li><a href="#" data-content-key="contact">Contact</a></li>
                 <li><a href="#" class="donate-button" data-content-key="donate-us">Donate Us</a></li>
             </ul>
@@ -1198,7 +1205,7 @@ footer {
     </div>
 
     <div class="mobile-menu-overlay"></div>
-    
+
     <div class="mobile-menu-container">
         <div class="mobile-menu-header">
             <h3>Menu</h3>
@@ -1265,7 +1272,7 @@ footer {
             <div class="about-content">
                 <div class="about-text">
                     <p>Santiniketan Tribal Academy (STA) was founded by Dr. Koushik Ghosh with a clear vision: uplift Tribal communities. Following the ideals of Gurudev Rabindranath Tagore, we are committed to promoting games, sports, and social work. Our mission goes beyond a single field; we strive for the holistic development of individuals, emphasizing values of education, community service, and self-reliance. Our programs provide a nurturing environment where talent is discovered and cultivated, empowering individuals to become well-rounded, contributing members of society.</p>
-                    
+
                 </div>
                 <div class="about-image">
                     <img src="Rabindra Nath Tagore.jpg" alt="STA R.N. Tagore">
@@ -1383,7 +1390,7 @@ footer {
 
         if (content) {
             let mediaSection = '';
-            
+
             if (content.images && content.images.length > 0) {
                 const imageHTML = content.images.map(img => `
                     <div class="media-item">
@@ -1393,7 +1400,7 @@ footer {
                 `).join('');
                 mediaSection += `<div class="media-container">${imageHTML}</div>`;
             }
-            
+
             if (content.videos && content.videos.length > 0) {
                 const videoHTML = content.videos.map(vid => `
                     <div class="media-item">
@@ -1428,18 +1435,30 @@ footer {
         mainContentDiv.innerHTML = contentHTML;
     }
 
+    // MODIFICATION 2: Function to close all open dropdowns
+    function closeAllDropdowns() {
+        document.querySelectorAll('.navbar .has-dropdown').forEach(item => {
+            item.classList.remove('show-submenu');
+        });
+        document.querySelectorAll('.navbar > li').forEach(item => {
+           item.classList.remove('active');
+        });
+    }
+
     navbars.forEach(navbar => {
         navbar.addEventListener('click', function(e) {
             const link = e.target.closest('a');
             if (link && link.dataset.contentKey) {
-                e.preventDefault(); 
+                e.preventDefault();
+                // MODIFICATION 2: Close all dropdowns before loading new content
+                closeAllDropdowns();
                 loadContent(link.dataset.contentKey);
-                closeMobileMenu(); 
+                closeMobileMenu();
 
                 document.querySelectorAll('.navbar li').forEach(item => {
                     item.classList.remove('active');
                 });
-                
+
                 if (link.closest('li')) {
                     link.closest('li').classList.add('active');
                 }
@@ -1455,7 +1474,7 @@ footer {
         document.body.addEventListener('click', function(e) {
             if (e.target.classList.contains('home-audio-toggle')) {
                 e.stopPropagation();
-                
+
                 if (webTune.paused) {
                     const playPromise = webTune.play();
                     if (playPromise !== undefined) {
@@ -1469,58 +1488,47 @@ footer {
             }
         });
     }
-    
+
     // Carousel functionality
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dots .dot');
     const prevButton = document.querySelector('.carousel-control.prev');
     const nextButton = document.querySelector('.carousel-control.next');
     let currentSlide = 0;
-    
+
     function showSlide(n) {
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
-        
+
         currentSlide = (n + slides.length) % slides.length;
-        
+
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
     }
-    
+
     function nextSlide() {
         showSlide(currentSlide + 1);
     }
-    
+
     function prevSlide() {
         showSlide(currentSlide - 1);
     }
-    
+
     nextButton.addEventListener('click', nextSlide);
     prevButton.addEventListener('click', prevSlide);
-    
+
     dots.forEach(dot => {
         dot.addEventListener('click', function() {
             const slideIndex = parseInt(this.getAttribute('data-slide'));
             showSlide(slideIndex);
         });
     });
-    
-    setInterval(nextSlide, 5000);
-    
-    // MODIFIED: Desktop dropdown functionality now uses click
-    const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
-    
-    // Add hover effect for background color
-    topLevelDropdowns.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.classList.add('active-hover');
-        });
-        item.addEventListener('mouseleave', function() {
-            this.classList.remove('active-hover');
-        });
-    });
 
-    // Add click to toggle dropdown visibility
+    setInterval(nextSlide, 5000);
+
+    // Desktop dropdown functionality
+    const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
+
     const topLevelDropdownLinks = document.querySelectorAll('.navbar > .has-dropdown > a');
     topLevelDropdownLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -1530,18 +1538,21 @@ footer {
             const parentItem = this.parentElement;
             const isCurrentlyOpen = parentItem.classList.contains('show-submenu');
 
-            // Close all other top-level dropdowns
+            // MODIFICATION 2: Close all other top-level dropdowns
             topLevelDropdowns.forEach(item => {
-                item.classList.remove('show-submenu');
-                item.classList.remove('active');
-                // Also close nested dropdowns
-                const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
-                nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
+                if (item !== parentItem) { // Don't close the one we're about to open
+                    item.classList.remove('show-submenu', 'active');
+                     // Also close nested dropdowns within other items
+                    item.querySelectorAll('.has-dropdown.show-submenu').forEach(nested => {
+                        nested.classList.remove('show-submenu');
+                    });
+                }
             });
 
             if (!isCurrentlyOpen) {
-                parentItem.classList.add('show-submenu');
-                parentItem.classList.add('active');
+                parentItem.classList.add('show-submenu', 'active');
+            } else {
+                 parentItem.classList.remove('show-submenu', 'active');
             }
         });
     });
@@ -1553,14 +1564,14 @@ footer {
             e.stopPropagation();
 
             const parentItem = this.parentElement;
-            
+
             const siblings = Array.from(parentItem.parentElement.children);
             siblings.forEach(sibling => {
                 if (sibling !== parentItem && sibling.classList.contains('has-dropdown')) {
                     sibling.classList.remove('show-submenu');
                 }
             });
-            
+
             parentItem.classList.toggle('show-submenu');
         });
     });
@@ -1568,15 +1579,17 @@ footer {
     // Close all dropdowns when clicking anywhere outside the navbar
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) {
-            topLevelDropdowns.forEach(item => {
-                item.classList.remove('show-submenu');
-                item.classList.remove('active');
-                // Also close nested dropdowns
-                const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
-                nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
-            });
+            closeAllDropdowns();
+            // Also remove the active state from the home button if no dropdown is open
+            const homeButton = document.querySelector('.navbar li a[data-content-key="home"]').closest('li');
+            if(homeButton && !document.querySelector('.navbar .show-submenu')) {
+               // Logic to re-highlight the active page could go here if needed
+            } else {
+                homeButton.classList.add('active'); // Default to home active if nothing else is
+            }
         }
     });
+
 
     // Mobile menu functionality
     const navbarToggle = document.querySelector('.navbar-toggle');
@@ -1584,34 +1597,34 @@ footer {
     const mobileMenuContainer = document.querySelector('.mobile-menu-container');
     const mobileMenuClose = document.querySelector('.mobile-menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
-    
+
     function generateMobileMenu() {
         const desktopMenu = document.querySelector('.navbar');
         mobileMenu.innerHTML = '';
-        
+
         const menuItems = desktopMenu.querySelectorAll(':scope > li');
-        
+
         menuItems.forEach(item => {
             const clonedItem = item.cloneNode(true);
-            
+
             clonedItem.classList.remove('has-dropdown', 'show-submenu', 'dropdown-right-align');
-            
+
             const dropdown = clonedItem.querySelector('.dropdown');
-            
+
             if (dropdown) {
                 clonedItem.classList.add('has-submenu');
-                
+
                 const link = clonedItem.querySelector('a');
                 link.classList.add('menu-toggle');
-                
+
                 dropdown.classList.remove('dropdown');
                 dropdown.classList.add('submenu');
-                
+
                 const nestedDropdowns = dropdown.querySelectorAll('.dropdown');
                 nestedDropdowns.forEach(nested => {
                     nested.classList.remove('dropdown');
                     nested.classList.add('submenu');
-                    
+
                     const parentItem = nested.closest('li');
                     if (parentItem) {
                         parentItem.classList.add('has-submenu');
@@ -1620,63 +1633,63 @@ footer {
                     }
                 });
             }
-            
+
             mobileMenu.appendChild(clonedItem);
         });
-        
+
         const mobileMenuToggles = mobileMenu.querySelectorAll('.menu-toggle');
-        
+
         mobileMenuToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
                 const parentItem = this.parentElement;
-                
+
                 if (parentItem.classList.contains('has-submenu')) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
-                
+
                 const siblings = Array.from(parentItem.parentElement.children);
                 siblings.forEach(sibling => {
                     if (sibling !== parentItem && sibling.classList.contains('has-submenu')) {
                         sibling.classList.remove('active');
-                        
+
                         const nestedSubmenus = sibling.querySelectorAll('.has-submenu');
                         nestedSubmenus.forEach(nested => {
                             nested.classList.remove('active');
                         });
                     }
                 });
-                
+
                 parentItem.classList.toggle('active');
             });
         });
     }
-    
+
     function toggleMobileMenu() {
         mobileMenuOverlay.style.display = 'block';
         mobileMenuContainer.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
-    
+
     function closeMobileMenu() {
         mobileMenuContainer.classList.remove('show');
         setTimeout(() => {
             mobileMenuOverlay.style.display = 'none';
         }, 300);
         document.body.style.overflow = 'auto';
-        
+
         const openSubmenus = mobileMenu.querySelectorAll('.has-submenu.active');
         openSubmenus.forEach(item => {
             item.classList.remove('active');
         });
     }
-    
+
     navbarToggle.addEventListener('click', toggleMobileMenu);
     mobileMenuClose.addEventListener('click', closeMobileMenu);
     mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-    
+
     generateMobileMenu();
-    
+
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             closeMobileMenu();
@@ -1721,9 +1734,3 @@ footer {
     </script>
 </body>
 </html>
-
-
-
-
-
-
