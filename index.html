@@ -300,7 +300,7 @@ header {
     color: white !important;
 }
 
-/* MODIFIED: New rule to specifically remove the creme background from the Donate button's li on hover */
+/* NEW: New rule to specifically remove the creme background from the Donate button's li on hover */
 .navbar > li:hover > .donate-button,
 .navbar > li.active > .donate-button {
     background-color: transparent;
@@ -655,29 +655,31 @@ footer {
 
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 20px; /* Increased gap for larger icons */
     margin-top: 10px;
     justify-content: center;
 }
 
-/* MODIFIED: Restructured social icon styles for a professional look */
+/* UPDATED: Restructured social icon styles for a professional look */
 .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Increased size */
+    height: 50px; /* Increased size */
     border-radius: 50%;
     text-decoration: none;
-    transition: transform 0.3s ease;
-    font-size: 1.2rem;
-    color: #ccc; /* Default icon color */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.6rem; /* Increased font size */
+    color: #555; /* Darker initial color */
     background-color: transparent; /* Remove the dark background */
 }
 
-/* NEW: Hover effects to change icon color */
+/* UPDATED: Hover effects for a finer-tuned look */
 .social-icons a:hover {
     transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .social-icons .fa-facebook-f:hover {
