@@ -128,7 +128,7 @@ header {
 /* MODIFIED: Reduced vertical padding for navigation links */
 .navbar > li > a {
     display: block;
-    padding: 8px 15px;
+    padding: 6px 15px; /* Reduced padding for a more compact look */
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
@@ -193,10 +193,10 @@ header {
     transform: translateY(10px);
     transition: all 0.3s ease;
     z-index: 1000;
-    padding: 10px;
+    padding: 8px; /* Reduced padding for a more compact look */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 6px; /* Reduced gap for a more compact look */
     border-top: 2px solid var(--secondary-color);
 }
 
@@ -216,9 +216,10 @@ header {
     position: relative;
 }
 
+/* MODIFIED: Reduced padding for dropdown links */
 .dropdown li a {
     display: block;
-    padding: 10px 12px;
+    padding: 8px 10px;
     color: var(--dark-color);
     text-decoration: none;
     border: 1px solid var(--secondary-color);
@@ -246,12 +247,13 @@ header {
     color: white;
 }
 
+/* MODIFIED: Adjusted nested dropdown positioning for smoother hover */
 .dropdown .has-dropdown > .dropdown {
     position: absolute;
-    top: -10px;
+    top: 0; /* Changed from -10px to 0 for a more professional hover feel */
     left: 100%;
     margin-left: 1px;
-    transform: translateY(10px);
+    transform: translateY(0); /* Removed the translateY for cleaner positioning */
     grid-template-columns: repeat(2, 1fr);
     min-width: 350px;
     border-left: 2px solid var(--primary-color);
@@ -286,6 +288,20 @@ header {
 }
 
 /* MODIFIED: Ensure only the yellowish-orange color is applied on hover/focus/active */
+.donate-button:hover,
+.donate-button:focus,
+.donate-button:active {
+    background-color: var(--accent-color-orange) !important;
+    color: white !important;
+}
+
+/* MODIFIED: New rule to specifically remove the creme background from the Donate button's li on hover */
+.navbar > li:hover > .donate-button,
+.navbar > li.active > .donate-button {
+    background-color: transparent;
+    color: var(--dark-color) !important;
+}
+
 .donate-button:hover,
 .donate-button:focus,
 .donate-button:active {
