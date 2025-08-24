@@ -582,6 +582,8 @@ footer {
     flex: 1;
     min-width: 200px;
     position: relative;
+    /* NEW: Add transition for interactivity */
+    transition: all 0.3s ease;
 }
 
 .footer-box::before {
@@ -594,17 +596,38 @@ footer {
     background-color: #2e86de;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* NEW: Interactive hover and active state for footer box */
+.footer-box:hover,
+.footer-box:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer-box:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .footer-box h3 {
     margin-bottom: 15px;
     font-size: 1.1rem;
     text-align: center;
+    /* NEW: Add transition for h3 */
+    transition: color 0.3s ease;
 }
 
 .footer-box h3::after {
     display: none;
 }
+
+/* NEW: Change h3 color on hover */
+.footer-box:hover h3 {
+    color: var(--primary-color);
+}
+
 
 .contact-info p {
     margin-bottom: 5px;
@@ -651,10 +674,27 @@ footer {
     font-size: 1.2rem;
 }
 
+/* NEW: Change social icons to their brand colors on hover */
 .social-icons a:hover {
-    background-color: var(--primary-color);
     transform: translateY(-3px);
 }
+
+.social-icons .fa-facebook-f:hover {
+    background-color: #3b5998;
+}
+
+.social-icons .fa-youtube:hover {
+    background-color: #c4302b;
+}
+
+.social-icons .fa-twitter:hover {
+    background-color: #00acee;
+}
+
+.social-icons .fa-instagram:hover {
+    background-color: #8a3ab9;
+}
+
 
 .copyright {
     text-align: center;
@@ -1185,6 +1225,7 @@ footer {
                 <div class="footer-box">
                     <h3>Follow Us</h3>
                     <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
