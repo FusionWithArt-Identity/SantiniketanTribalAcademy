@@ -1525,9 +1525,10 @@ footer {
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
         document.body.addEventListener('click', function(e) {
-            // This logic is now safe because the 'home' link click is handled separately and doesn't interfere
             if (e.target.classList.contains('home-audio-toggle')) {
-                e.stopPropagation(); // Prevents the link's main click event from firing
+                // By removing stopPropagation, the click will toggle the audio
+                // AND then bubble up to the parent <a> tag, triggering the navigation logic.
+                // e.stopPropagation(); 
 
                 if (webTune.paused) {
                     const playPromise = webTune.play();
