@@ -1049,8 +1049,7 @@ footer {
     <div class="navbar-container">
         <div class="container">
             <ul class="navbar">
-                <li><a href="#" data-content-key="home"><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
-
+                <li><a href=""><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
                 <li class="has-dropdown">
                     <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1440,9 +1439,6 @@ footer {
         }
 
         mainContentDiv.innerHTML = contentHTML;
-
-        // MODIFICATION: Scroll the main content area into view after loading.
-        mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function closeAllDropdowns() {
@@ -1477,8 +1473,10 @@ footer {
         });
     });
 
-    loadContent('home');
-    document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+    // MODIFICATION START: Removed initial content loading for 'home'
+    // loadContent('home');
+    // document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+    // MODIFICATION END
 
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
@@ -1586,9 +1584,10 @@ footer {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) {
             closeAllDropdowns();
-            // Re-highlight the home button when everything is closed
-            const homeButton = document.querySelector('.navbar li a[data-content-key="home"]').closest('li');
-            homeButton.classList.add('active');
+            // MODIFICATION START: Removed re-highlighting of home button
+            // const homeButton = document.querySelector('.navbar li a[data-content-key="home"]').closest('li');
+            // homeButton.classList.add('active');
+            // MODIFICATION END
         }
     });
 
