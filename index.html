@@ -18,7 +18,8 @@
     --primary-color: #A38C61; /* Dark Creme */
     --secondary-color: #B8A881; /* Medium Creme */
     --tertiary-color: #D4C9A8; /* Light Creme for nested menu */
-    --accent-color: #E74C3C; /* Retain for highlight */
+    --accent-color-red: #E74C3C; /* Retain for highlight */
+    --accent-color-orange: #FFB74D; /* Yellowish Orange for donate button */
     --light-color: #F8F5EC; /* Lightest Creme */
     --dark-color: #3B3128; /* Dark Brown/Coffee */
     --text-color: #3B3128;
@@ -45,8 +46,8 @@ header {
     color: white;
     padding: 15px 0;
     box-shadow: var(--shadow);
-    position: relative; /* Add this to position the image relative to the header */
-    overflow: hidden; /* Hide any overflow from the image */
+    position: relative;
+    overflow: hidden;
 }
 
 .header-bg {
@@ -56,7 +57,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; /* Place the image behind the content */
+    z-index: -1;
 }
 
 .header-content {
@@ -112,13 +113,11 @@ header {
     justify-content: center;
     list-style: none;
     position: relative;
-    /* ADDED: Visual separation for navbar items */
     padding: 0 5px;
 }
 
 .navbar > li {
     position: relative;
-    /* ADDED: Vertical divider */
     border-right: 1px solid var(--tertiary-color);
 }
 
@@ -143,17 +142,15 @@ header {
     transition: color 0.3s ease;
 }
 
-/* MODIFICATION: New color for hover/active/focus states */
 .home-audio-toggle:hover,
 .home-audio-toggle:focus,
 .home-audio-toggle:active {
-    color: #FFF5B8 !important; /* Use !important to override parent link hover styles */
+    color: #FFF5B8 !important;
 }
 
-
+/* MODIFIED: Highlight state for parent tabs */
 .navbar > li:hover > a, 
-.navbar > li.active > a,
-.has-dropdown.show-submenu > a {
+.navbar > li.active > a {
     background-color: var(--secondary-color);
     color: white;
 }
@@ -234,7 +231,6 @@ header {
     font-size: 13px;
 }
 
-/* MODIFIED: Dropdown item hover/focus state */
 .dropdown li a:hover,
 .dropdown li a:focus,
 .dropdown li a:active {
@@ -279,25 +275,22 @@ header {
     border-right: 2px solid var(--primary-color);
 }
 
-/* MODIFIED: Donate button style to not have a red background initially */
 .donate-button {
-    background-color: transparent; /* Set initial background to transparent */
-    color: var(--dark-color) !important; /* Use the default text color */
+    background-color: transparent;
+    color: var(--dark-color) !important;
     border-radius: 4px;
     margin-left: 8px;
     transition: all 0.3s ease;
-    border: 1px solid var(--secondary-color); /* Add a border to define the button area */
+    border: 1px solid var(--secondary-color);
 }
 
-/* MODIFIED: Hover/active/focus state for donate button */
 .donate-button:hover,
 .donate-button:focus,
 .donate-button:active {
-    background-color: var(--accent-color) !important; /* Apply red on hover */
+    background-color: var(--accent-color-orange) !important;
     color: white !important;
 }
 
-/* New CSS for the menu bar container */
 .menu-bar-container {
     background-color: var(--light-color);
     box-shadow: var(--shadow);
@@ -319,10 +312,10 @@ header {
 
 .navbar-toggle {
     display: none;
-    background-color: var(--tertiary-color); /* Washout box color */
+    background-color: var(--tertiary-color);
     border: none;
     font-size: 1.3rem;
-    color: var(--dark-color); /* Black bars */
+    color: var(--dark-color);
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 4px;
@@ -445,7 +438,7 @@ header {
 .content-placeholder {
     text-align: center;
     color: #7f8c8d;
-    padding: 30px 15px; /* Updated padding for horizontal spacing */
+    padding: 30px 15px;
 }
 
 .content-placeholder i {
@@ -454,7 +447,6 @@ header {
     color: #bdc3c7;
 }
 
-/* New styles for dynamic content */
 .dynamic-content h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -494,7 +486,7 @@ header {
 .about-section {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: white;
-    padding: 30px 15px; /* Updated padding for horizontal spacing */
+    padding: 30px 15px;
     margin: 15px 0;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -516,7 +508,7 @@ header {
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-red);
 }
 
 .about-content {
@@ -540,9 +532,9 @@ header {
 
 .about-image img {
     max-width: 100%;
-    width: 100%; /* Force image to take full width of its container */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove any extra space below the image */
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 footer {
@@ -576,7 +568,7 @@ footer {
     left: 0;
     width: 100%;
     height: 5px;
-    background-color: #2e86de; /* A shade of blue for the line */
+    background-color: #2e86de;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -699,18 +691,24 @@ footer {
     padding: 10px 0;
 }
 
-.mobile-menu li {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
+/* MODIFIED: Compact mobile menu items */
 .mobile-menu li a {
     display: block;
-    padding: 12px 15px;
+    padding: 8px 15px; /* Reduced vertical padding */
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
+
+/* MODIFIED: Mobile menu item hover/active/focus state */
+.mobile-menu li a:hover,
+.mobile-menu li a:active,
+.mobile-menu li a:focus {
+    background-color: var(--tertiary-color);
+    color: var(--dark-color);
+}
+
 
 /* MODIFIED: Mobile donate button style */
 .mobile-menu li a.donate-button {
@@ -720,10 +718,9 @@ footer {
 
 .mobile-menu li a.donate-button:hover,
 .mobile-menu li a.donate-button:focus {
-    background-color: var(--accent-color) !important;
+    background-color: var(--accent-color-orange) !important;
     color: white !important;
 }
-
 
 .mobile-menu .menu-toggle {
     display: flex;
@@ -737,6 +734,14 @@ footer {
     list-style: none;
     background-color: var(--tertiary-color);
     padding-left: 15px;
+}
+
+/* MODIFIED: Submenu item hover/active/focus state */
+.mobile-menu .submenu li a:hover,
+.mobile-menu .submenu li a:active,
+.mobile-menu .submenu li a:focus {
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 .mobile-menu .submenu li {
@@ -755,7 +760,6 @@ footer {
     display: block;
 }
 
-/* Mobile menu icon toggling */
 .mobile-menu .has-submenu .menu-toggle .equals-icon {
     display: none;
 }
@@ -806,12 +810,10 @@ footer {
         margin-bottom: 0;
     }
 
-    /* Hide desktop nav on mobile */
     .navbar {
         display: none !important;
     }
 
-    /* Show the hamburger menu icon */
     .navbar-toggle {
         display: block;
     }
@@ -832,14 +834,13 @@ footer {
         text-align: center;
     }
 
-    /* Change to column layout for About Us section on mobile */
     .about-content {
         flex-direction: column;
     }
 
     .about-text, .about-image {
         min-width: 100%;
-        margin-bottom: 15px; /* Add some space between text and image */
+        margin-bottom: 15px;
     }
 }
 
@@ -1212,13 +1213,11 @@ footer {
             text: 'Your generous contribution helps us provide better facilities, equipment, and opportunities for our young athletes. Every donation, no matter the size, makes a difference in nurturing future champions. Thank you for your support!',
             button: { text: 'Proceed to Donate', href: '#' }
         },
-        // Add more content objects here for each menu item
     };
 
     const mainContentDiv = document.getElementById('main-content');
     const navbars = document.querySelectorAll('.navbar, .mobile-menu');
 
-    // Function to generate and load content dynamically
     function loadContent(contentKey) {
         const content = contentData[contentKey];
         let contentHTML = '';
@@ -1270,7 +1269,6 @@ footer {
         mainContentDiv.innerHTML = contentHTML;
     }
 
-    // Event listener for the navigation menus (desktop and mobile)
     navbars.forEach(navbar => {
         navbar.addEventListener('click', function(e) {
             const link = e.target.closest('a');
@@ -1290,20 +1288,16 @@ footer {
         });
     });
 
-    // Initial content load
     loadContent('home');
     document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
 
-    // --- MODIFICATION: Audio Toggle for Home Icon (Desktop and Mobile) ---
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
         document.body.addEventListener('click', function(e) {
-            // Check if the clicked element has the 'home-audio-toggle' class
             if (e.target.classList.contains('home-audio-toggle')) {
-                e.stopPropagation(); // Stop the event from bubbling up to the link's content-loading listener
+                e.stopPropagation();
                 
                 if (webTune.paused) {
-                    // Attempt to play and catch any errors (e.g., autoplay blocked)
                     const playPromise = webTune.play();
                     if (playPromise !== undefined) {
                         playPromise.catch(error => {
@@ -1526,7 +1520,6 @@ footer {
                         <p style="font-size: 1rem; margin-top: 10px; color: var(--text-color);">This page is optimized for mobile viewing only on mobile devices. Please switch back to the mobile view or access the website from a desktop computer.</p>
                     </div>
                 `;
-                // Remove the event listener to prevent further checks
                 window.removeEventListener('resize', blockDesktopMode);
             }
         }
