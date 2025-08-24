@@ -649,8 +649,13 @@ footer {
     font-size: 14px;
 }
 
-.footer-links a:hover {
+/* MODIFIED: Add text-decoration and font-weight for hover and active states */
+.footer-links a:hover,
+.footer-links a:focus,
+.footer-links a:active {
     color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .social-icons {
@@ -1386,7 +1391,7 @@ footer {
     
     // Carousel functionality
     const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
     const prevButton = document.querySelector('.carousel-control.prev');
     const nextButton = document.querySelector('.carousel-control.next');
     let currentSlide = 0;
