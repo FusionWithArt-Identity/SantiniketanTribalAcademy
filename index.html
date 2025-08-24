@@ -12,6 +12,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent; /* ADDED: This line removes the light blue trace effect on touch devices */
 }
 
 :root {
@@ -97,7 +98,7 @@ header {
     opacity: 0.9;
     /* REMOVED: Text outline and drop-shadow as requested */
     /* NEW: Change text color to bright yellow */
-    color: #00FFFF;
+    color: #FFFF00;
 }
 
 .divider {
@@ -348,6 +349,16 @@ header {
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* ADDED: This makes the burger menu button more interactive on click/touch */
+.navbar-toggle:active,
+.navbar-toggle:focus {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-right-align .dropdown {
@@ -1661,6 +1672,3 @@ footer {
     </script>
 </body>
 </html>
-
-
-
