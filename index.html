@@ -660,13 +660,14 @@ footer {
     justify-content: center;
 }
 
+/* REMOVED: Unnecessary background and shadow on parent link */
 .social-icons a {
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease; /* Transition on the link for consistent effects */
     color: #555;
-    background-color: transparent;
 }
 
+/* MODIFIED: All visual effects now applied to the circular icon itself */
 .social-icons a i {
     display: flex;
     align-items: center;
@@ -675,34 +676,36 @@ footer {
     height: 50px;
     border-radius: 50%;
     font-size: 1.6rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Added subtle initial shadow for depth */
+    transition: all 0.3s ease; /* Combine transitions for smooth effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* UPDATED: Hover effects for a finer-tuned look */
-.social-icons a:hover {
+/* MODIFIED: Hover effects now target the circular icon to avoid square background */
+.social-icons a:hover i {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--tertiary-color);
 }
 
-.social-icons a:hover i {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
+/* UPDATED: Hover color for each icon */
 .social-icons .fa-facebook-f:hover {
     color: #3b5998;
+    background-color: #dbe4ef; /* Lighter background on hover for better contrast */
 }
 
 .social-icons .fa-youtube:hover {
     color: #c4302b;
+    background-color: #fcebeb;
 }
 
 .social-icons .fa-twitter:hover {
     color: #00acee;
+    background-color: #e5f5fc;
 }
 
 .social-icons .fa-instagram:hover {
     color: #8a3ab9;
+    background-color: #f7e6ff;
 }
 
 
