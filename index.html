@@ -15,6 +15,18 @@
     -webkit-tap-highlight-color: transparent; /* ADDED: This line removes the light blue trace effect on touch devices */
 }
 
+/* ADDED: New rule to disable text selection, dragging, and hold-to-open options */
+body, img, a, p, h1, h2, h3, h4, span, div, li {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    -webkit-user-drag: none; /* Safari and other WebKit-based browsers */
+    user-drag: none; /* Standard property for other browsers */
+}
+
+
 :root {
     --primary-color: #A38C61; /* Dark Creme */
     --secondary-color: #B8A881; /* Medium Creme */
@@ -1669,6 +1681,11 @@ footer {
 
         document.addEventListener('DOMContentLoaded', blockDesktopMode);
         window.addEventListener('resize', blockDesktopMode);
+
+        // ADDED: This script disables right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
