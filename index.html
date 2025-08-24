@@ -1503,11 +1503,24 @@ footer {
     if (savedContentKey) {
         // If state is found, load that content
         loadContent(savedContentKey);
-        // Set the corresponding link to active
+        
+        // Find the active link and restore the visual "focused" state for it and its parents.
         const activeLink = document.querySelector(`.navbar a[data-content-key="${savedContentKey}"]`);
-        if (activeLink && activeLink.closest('li')) {
-            activeLink.closest('li').classList.add('active');
+        if (activeLink) {
+            // Highlight the direct parent li of the link itself
+            const directParentLi = activeLink.closest('li');
+            if (directParentLi) {
+                directParentLi.classList.add('active');
+            }
+            
+            // Find all ancestor dropdown menus and open them to make the active link visible
+            document.querySelectorAll('.navbar .has-dropdown').forEach(dropdown => {
+                if (dropdown.contains(activeLink)) {
+                    dropdown.classList.add('show-submenu', 'active');
+                }
+            });
         }
+
     } else {
         // If no state is found (first visit or after clicking home), load the default 'home' content
         loadContent('home');
