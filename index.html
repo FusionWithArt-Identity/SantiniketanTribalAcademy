@@ -45,6 +45,7 @@ body {
     line-height: 1.4;
     font-size: 14px;
     position: relative;
+    scroll-behavior: smooth; /* Added for smooth scrolling */
 }
 
 .container {
@@ -1049,7 +1050,8 @@ footer {
     <div class="navbar-container">
         <div class="container">
             <ul class="navbar">
-                <li><a href=""><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
+                <li><a href="#" data-content-key="home"><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
+
                 <li class="has-dropdown">
                     <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
                     <ul class="dropdown">
@@ -1389,6 +1391,7 @@ footer {
 
     const mainContentDiv = document.getElementById('main-content');
     const navbars = document.querySelectorAll('.navbar, .mobile-menu');
+    const placeholderHTML = mainContentDiv.innerHTML; // Store initial placeholder
 
     function loadContent(contentKey) {
         const content = contentData[contentKey];
@@ -1439,6 +1442,8 @@ footer {
         }
 
         mainContentDiv.innerHTML = contentHTML;
+        // Focus on the main content area after loading new content
+        mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function closeAllDropdowns() {
@@ -1453,10 +1458,24 @@ footer {
     navbars.forEach(navbar => {
         navbar.addEventListener('click', function(e) {
             const link = e.target.closest('a');
-            if (link && !link.parentElement.classList.contains('has-dropdown') && link.dataset.contentKey) {
+            if (!link) return;
+
+            const contentKey = link.dataset.contentKey;
+
+            // MODIFICATION START: Added special handling for the "home" link
+            if (contentKey === 'home') {
                 e.preventDefault();
                 closeAllDropdowns();
-                loadContent(link.dataset.contentKey);
+                closeMobileMenu();
+                mainContentDiv.innerHTML = placeholderHTML; // Reset content area
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+            } 
+            // MODIFICATION END
+
+            else if (link && !link.parentElement.classList.contains('has-dropdown') && contentKey) {
+                e.preventDefault();
+                closeAllDropdowns();
+                loadContent(contentKey);
                 closeMobileMenu();
 
                 document.querySelectorAll('.navbar li').forEach(item => {
@@ -1466,23 +1485,23 @@ footer {
                 if (link.closest('li')) {
                     link.closest('li').classList.add('active');
                 }
-            } else if (link && link.dataset.contentKey) {
+            } else if (link && contentKey) {
                  // For dropdown parent links that also load content
-                loadContent(link.dataset.contentKey);
+                loadContent(contentKey);
             }
         });
     });
 
-    // MODIFICATION START: Removed initial content loading for 'home'
+    // MODIFICATION: Removed initial content loading and active class for 'home'
     // loadContent('home');
     // document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
-    // MODIFICATION END
 
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
         document.body.addEventListener('click', function(e) {
+            // This logic is now safe because the 'home' link click is handled separately and doesn't interfere
             if (e.target.classList.contains('home-audio-toggle')) {
-                e.stopPropagation();
+                e.stopPropagation(); // Prevents the link's main click event from firing
 
                 if (webTune.paused) {
                     const playPromise = webTune.play();
@@ -1495,7 +1514,7 @@ footer {
                     webTune.pause();
                 }
             }
-        });
+        }, true); // Use capture phase to ensure this runs before other click listeners
     }
 
     // Carousel functionality
@@ -1584,10 +1603,6 @@ footer {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) {
             closeAllDropdowns();
-            // MODIFICATION START: Removed re-highlighting of home button
-            // const homeButton = document.querySelector('.navbar li a[data-content-key="home"]').closest('li');
-            // homeButton.classList.add('active');
-            // MODIFICATION END
         }
     });
 
