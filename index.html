@@ -506,10 +506,9 @@ header {
 }
 .dynamic-content p {
     margin-bottom: 1rem;
+    /* FIX 1: Added word-wrap to prevent overflow on small screens */
     word-wrap: break-word;
     overflow-wrap: break-word;
-    /* MODIFICATION: Increased font size for Home section text */
-    font-size: 16px; 
 }
 .dynamic-content .media-container {
     display: grid;
@@ -576,10 +575,6 @@ header {
 .about-text {
     flex: 1;
     min-width: 280px;
-}
-/* MODIFICATION: Increased font size for About Us section text */
-.about-text p {
-    font-size: 16px;
 }
 
 .about-image {
@@ -668,6 +663,7 @@ footer {
 
 .contact-info p {
     margin-bottom: 5px;
+    /* FIX 2: Added word-wrap to prevent overflow on small screens */
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -1511,6 +1507,7 @@ footer {
     
     setInterval(nextSlide, 5000);
     
+    // MODIFIED: Desktop dropdown functionality now uses click
     const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
     
     // Add hover effect for background color
@@ -1523,7 +1520,7 @@ footer {
         });
     });
 
-    // MODIFICATION: Add click to toggle dropdown visibility and close others
+    // Add click to toggle dropdown visibility
     const topLevelDropdownLinks = document.querySelectorAll('.navbar > .has-dropdown > a');
     topLevelDropdownLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -1531,19 +1528,21 @@ footer {
             e.stopPropagation();
 
             const parentItem = this.parentElement;
+            const isCurrentlyOpen = parentItem.classList.contains('show-submenu');
 
-            // This loop closes all OTHER dropdowns before toggling the current one
+            // Close all other top-level dropdowns
             topLevelDropdowns.forEach(item => {
-                if (item !== parentItem) {
-                    item.classList.remove('show-submenu', 'active');
-                    const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
-                    nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
-                }
+                item.classList.remove('show-submenu');
+                item.classList.remove('active');
+                // Also close nested dropdowns
+                const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
+                nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
             });
 
-            // This line then toggles the visibility of the dropdown you just clicked
-            parentItem.classList.toggle('show-submenu');
-            parentItem.classList.toggle('active');
+            if (!isCurrentlyOpen) {
+                parentItem.classList.add('show-submenu');
+                parentItem.classList.add('active');
+            }
         });
     });
 
@@ -1722,3 +1721,9 @@ footer {
     </script>
 </body>
 </html>
+
+
+
+
+
+
