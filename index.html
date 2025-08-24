@@ -660,39 +660,40 @@ footer {
     justify-content: center;
 }
 
+/* MODIFIED: Restructured social icon styles for a professional look */
 .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: var(--dark-color);
     border-radius: 50%;
-    color: white;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     font-size: 1.2rem;
+    color: #ccc; /* Default icon color */
+    background-color: transparent; /* Remove the dark background */
 }
 
-/* NEW: Change social icons to their brand colors on hover */
+/* NEW: Hover effects to change icon color */
 .social-icons a:hover {
     transform: translateY(-3px);
 }
 
 .social-icons .fa-facebook-f:hover {
-    background-color: #3b5998;
+    color: #3b5998;
 }
 
 .social-icons .fa-youtube:hover {
-    background-color: #c4302b;
+    color: #c4302b;
 }
 
 .social-icons .fa-twitter:hover {
-    background-color: #00acee;
+    color: #00acee;
 }
 
 .social-icons .fa-instagram:hover {
-    background-color: #8a3ab9;
+    color: #8a3ab9;
 }
 
 
