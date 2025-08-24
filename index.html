@@ -14,17 +14,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* MODIFICATION: Refined Color Palette for a more professional look */
 :root {
-    --primary-color: #9C8054; /* Richer, more defined Gold/Brown */
-    --secondary-color: #D4C9A8; /* Lighter Creme for hover backgrounds */
-    --tertiary-color: #EAE4D3; /* Even lighter for nested elements */
-    --accent-color: #5D737E; /* Professional Slate Blue for highlights */
+    --primary-color: #A38C61; /* Dark Creme */
+    --secondary-color: #B8A881; /* Medium Creme */
+    --tertiary-color: #D4C9A8; /* Light Creme for nested menu */
+    --accent-color: #E74C3C; /* Retain for highlight */
     --light-color: #F8F5EC; /* Lightest Creme */
-    --dark-color: #3B3128; /* Dark Brown/Coffee for text */
+    --dark-color: #3B3128; /* Dark Brown/Coffee */
     --text-color: #3B3128;
-    --border-color: #D4C9A8; /* Subtle border color */
-    --shadow: 0 4px 8px rgba(0, 0, 0, 0.07); /* Softer shadow */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -47,8 +45,8 @@ header {
     color: white;
     padding: 15px 0;
     box-shadow: var(--shadow);
-    position: relative; 
-    overflow: hidden; 
+    position: relative; /* Add this to position the image relative to the header */
+    overflow: hidden; /* Hide any overflow from the image */
 }
 
 .header-bg {
@@ -58,7 +56,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; 
+    z-index: -1; /* Place the image behind the content */
 }
 
 .header-content {
@@ -107,7 +105,6 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .navbar {
@@ -121,27 +118,15 @@ header {
     position: relative;
 }
 
-/* MODIFICATION: Elegant nav link styling */
 .navbar > li > a {
     display: block;
-    padding: 14px 15px 12px; /* Adjusted padding for border */
+    padding: 12px 15px;
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
     font-size: 14px;
-    border-bottom: 2px solid transparent; /* Prepare for hover effect */
 }
-
-/* MODIFICATION: Subtle hover and active state with underline */
-.navbar > li:hover > a, 
-.navbar > li.active > a,
-.has-dropdown.show-submenu > a {
-    color: var(--primary-color);
-    background-color: transparent; /* Removed background change */
-    border-bottom: 2px solid var(--primary-color);
-}
-
 
 /* Style for the home audio icon */
 .home-audio-toggle {
@@ -150,13 +135,20 @@ header {
     transition: color 0.3s ease;
 }
 
-/* MODIFICATION: Integrated home icon hover with new theme */
+/* MODIFICATION: New color for hover/active/focus states */
 .home-audio-toggle:hover,
 .home-audio-toggle:focus,
 .home-audio-toggle:active {
-    color: var(--primary-color) !important;
+    color: #FFF5B8 !important; /* Use !important to override parent link hover styles */
 }
 
+
+.navbar > li:hover > a, 
+.navbar > li.active > a,
+.has-dropdown.show-submenu > a {
+    background-color: var(--secondary-color);
+    color: white;
+}
 
 .has-dropdown > a {
     display: flex;
@@ -199,13 +191,12 @@ header {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
-    border: 1px solid var(--border-color);
-    border-top: 2px solid var(--primary-color);
+    border-top: 2px solid var(--secondary-color);
 }
 
 .dropdown .dropdown {
     background-color: var(--tertiary-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--secondary-color);
     border-left: 2px solid var(--primary-color);
 }
 
@@ -219,13 +210,12 @@ header {
     position: relative;
 }
 
-/* MODIFICATION: Cleaner dropdown item styling */
 .dropdown li a {
     display: block;
     padding: 10px 12px;
     color: var(--dark-color);
     text-decoration: none;
-    border: 1px solid transparent; /* Border on hover instead */
+    border: 1px solid var(--secondary-color);
     border-radius: 4px;
     transition: all 0.3s ease;
     text-align: center;
@@ -237,17 +227,15 @@ header {
 }
 
 .dropdown li a:hover {
-    background-color: var(--tertiary-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
     transform: translateY(-2px);
     box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
 }
 
 .navbar > li.show-submenu > a {
-    color: var(--primary-color);
-    background-color: transparent;
-    border-bottom-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 .dropdown .has-dropdown > .dropdown {
@@ -280,20 +268,18 @@ header {
     border-right: 2px solid var(--primary-color);
 }
 
-/* MODIFICATION: Updated donate button with new accent color */
 .donate-button {
     background-color: var(--accent-color);
     color: white !important;
     border-radius: 4px;
     margin-left: 8px;
-    border-bottom: 2px solid transparent !important;
 }
 
 .donate-button:hover {
-    background-color: #4A5C66 !important; /* Darker slate blue */
-    color: white !important;
+    background-color: #c0392b !important;
 }
 
+/* New CSS for the menu bar container */
 .menu-bar-container {
     background-color: var(--light-color);
     box-shadow: var(--shadow);
@@ -315,10 +301,10 @@ header {
 
 .navbar-toggle {
     display: none;
-    background-color: var(--tertiary-color); 
+    background-color: var(--tertiary-color); /* Washout box color */
     border: none;
     font-size: 1.3rem;
-    color: var(--dark-color); 
+    color: var(--dark-color); /* Black bars */
     cursor: pointer;
     padding: 8px 12px;
     border-radius: 4px;
@@ -441,7 +427,7 @@ header {
 .content-placeholder {
     text-align: center;
     color: #7f8c8d;
-    padding: 30px 15px; 
+    padding: 30px 15px; /* Updated padding for horizontal spacing */
 }
 
 .content-placeholder i {
@@ -450,6 +436,7 @@ header {
     color: #bdc3c7;
 }
 
+/* New styles for dynamic content */
 .dynamic-content h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -489,7 +476,7 @@ header {
 .about-section {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     color: white;
-    padding: 30px 15px; 
+    padding: 30px 15px; /* Updated padding for horizontal spacing */
     margin: 15px 0;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -503,7 +490,6 @@ header {
     padding-bottom: 8px;
 }
 
-/* MODIFICATION: Updated accent color for consistency */
 .section-title::after {
     content: '';
     position: absolute;
@@ -511,7 +497,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     width: 60px;
-    height: 3px;
+    height: 2px;
     background-color: var(--accent-color);
 }
 
@@ -536,9 +522,9 @@ header {
 
 .about-image img {
     max-width: 100%;
-    width: 100%; 
-    height: auto; 
-    display: block; 
+    width: 100%; /* Force image to take full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space below the image */
 }
 
 footer {
@@ -565,7 +551,6 @@ footer {
     position: relative;
 }
 
-/* MODIFICATION: Updated accent color for consistency */
 .footer-box::before {
     content: '';
     position: absolute;
@@ -573,7 +558,7 @@ footer {
     left: 0;
     width: 100%;
     height: 5px;
-    background-color: var(--accent-color);
+    background-color: #2e86de; /* A shade of blue for the line */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -582,7 +567,6 @@ footer {
     margin-bottom: 15px;
     font-size: 1.1rem;
     text-align: center;
-    color: var(--primary-color);
 }
 
 .footer-box h3::after {
@@ -698,7 +682,7 @@ footer {
 }
 
 .mobile-menu li {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .mobile-menu li a {
@@ -707,14 +691,6 @@ footer {
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* MODIFICATION: Clear touch/click feedback for mobile menu */
-.mobile-menu li a:active,
-.mobile-menu li a:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
 }
 
 .mobile-menu li a.donate-button {
@@ -803,10 +779,12 @@ footer {
         margin-bottom: 0;
     }
 
+    /* Hide desktop nav on mobile */
     .navbar {
         display: none !important;
     }
 
+    /* Show the hamburger menu icon */
     .navbar-toggle {
         display: block;
     }
@@ -827,13 +805,14 @@ footer {
         text-align: center;
     }
 
+    /* Change to column layout for About Us section on mobile */
     .about-content {
         flex-direction: column;
     }
 
     .about-text, .about-image {
         min-width: 100%;
-        margin-bottom: 15px; 
+        margin-bottom: 15px; /* Add some space between text and image */
     }
 }
 
@@ -1288,7 +1267,7 @@ footer {
     loadContent('home');
     document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
 
-    // --- Audio Toggle for Home Icon (Desktop and Mobile) ---
+    // --- MODIFICATION: Audio Toggle for Home Icon (Desktop and Mobile) ---
     const webTune = document.getElementById('Web-tune');
     if (webTune) {
         document.body.addEventListener('click', function(e) {
@@ -1530,4 +1509,3 @@ footer {
     </script>
 </body>
 </html>
-
