@@ -378,13 +378,14 @@ header {
     right: 0;
 }
 
+/* Carousel functionality */
 .carousel-container {
     margin: 15px 0;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: var(--shadow);
-    height: 300px; /* Adjusted height from 400px to 300px */
+    height: 400px; /* Original desktop height */
 }
 
 .carousel-slide {
@@ -411,26 +412,37 @@ header {
     right: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: white;
-    padding: 10px; /* Slightly reduced padding to match smaller size */
+    padding: 15px; /* Original desktop padding */
 }
 
 .slide-title {
-    font-size: 1.1rem; /* Reduced font size */
-    margin-bottom: 3px; /* Reduced margin */
+    font-size: 1.3rem;
+    margin-bottom: 5px;
 }
 
 .slide-description {
-    font-size: 0.8rem; /* Reduced font size */
+    font-size: 0.9rem;
 }
 
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 15px;
+/* --- MOBILE STYLES --- */
+@media (max-width: 768px) {
+    /* ... other mobile styles ... */
+    
+    .carousel-container {
+        height: 300px; /* New height for mobile devices */
+    }
+    
+    .slide-content {
+        padding: 10px; /* Reduced padding for mobile */
+    }
+
+    .slide-title {
+        font-size: 1.1rem; /* Reduced font size for mobile */
+    }
+
+    .slide-description {
+        font-size: 0.8rem; /* Reduced font size for mobile */
+    }
 }
 
 .carousel-control {
@@ -1689,6 +1701,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
