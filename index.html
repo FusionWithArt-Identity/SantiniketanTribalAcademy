@@ -508,7 +508,7 @@ header {
     margin-bottom: 1rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    /* MODIFICATION 1: Increased font size for Home section text */
+    /* MODIFICATION: Increased font size for Home section text */
     font-size: 16px; 
 }
 .dynamic-content .media-container {
@@ -577,7 +577,7 @@ header {
     flex: 1;
     min-width: 280px;
 }
-/* MODIFICATION 1: Increased font size for About Us section text */
+/* MODIFICATION: Increased font size for About Us section text */
 .about-text p {
     font-size: 16px;
 }
@@ -1523,7 +1523,7 @@ footer {
         });
     });
 
-    // MODIFICATION 2: Add click to toggle dropdown visibility and close others
+    // MODIFICATION: Add click to toggle dropdown visibility and close others
     const topLevelDropdownLinks = document.querySelectorAll('.navbar > .has-dropdown > a');
     topLevelDropdownLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -1532,7 +1532,7 @@ footer {
 
             const parentItem = this.parentElement;
 
-            // Close all OTHER dropdowns before toggling the current one
+            // This loop closes all OTHER dropdowns before toggling the current one
             topLevelDropdowns.forEach(item => {
                 if (item !== parentItem) {
                     item.classList.remove('show-submenu', 'active');
@@ -1541,7 +1541,7 @@ footer {
                 }
             });
 
-            // Now, toggle the visibility of the clicked item's dropdown
+            // This line then toggles the visibility of the dropdown you just clicked
             parentItem.classList.toggle('show-submenu');
             parentItem.classList.toggle('active');
         });
