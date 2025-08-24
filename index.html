@@ -112,10 +112,18 @@ header {
     justify-content: center;
     list-style: none;
     position: relative;
+    /* ADDED: Visual separation for navbar items */
+    padding: 0 5px;
 }
 
 .navbar > li {
     position: relative;
+    /* ADDED: Vertical divider */
+    border-right: 1px solid var(--tertiary-color);
+}
+
+.navbar > li:last-child {
+    border-right: none;
 }
 
 .navbar > li > a {
@@ -226,7 +234,10 @@ header {
     font-size: 13px;
 }
 
-.dropdown li a:hover {
+/* MODIFIED: Dropdown item hover/focus state */
+.dropdown li a:hover,
+.dropdown li a:focus,
+.dropdown li a:active {
     background-color: var(--primary-color);
     color: white;
     transform: translateY(-2px);
@@ -268,15 +279,22 @@ header {
     border-right: 2px solid var(--primary-color);
 }
 
+/* MODIFIED: Donate button style to not have a red background initially */
 .donate-button {
-    background-color: var(--accent-color);
-    color: white !important;
+    background-color: transparent; /* Set initial background to transparent */
+    color: var(--dark-color) !important; /* Use the default text color */
     border-radius: 4px;
     margin-left: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--secondary-color); /* Add a border to define the button area */
 }
 
-.donate-button:hover {
-    background-color: #c0392b !important;
+/* MODIFIED: Hover/active/focus state for donate button */
+.donate-button:hover,
+.donate-button:focus,
+.donate-button:active {
+    background-color: var(--accent-color) !important; /* Apply red on hover */
+    color: white !important;
 }
 
 /* New CSS for the menu bar container */
@@ -691,12 +709,21 @@ footer {
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+/* MODIFIED: Mobile donate button style */
 .mobile-menu li a.donate-button {
-    background-color: var(--accent-color);
+    background-color: transparent;
+    color: var(--dark-color) !important;
+}
+
+.mobile-menu li a.donate-button:hover,
+.mobile-menu li a.donate-button:focus {
+    background-color: var(--accent-color) !important;
     color: white !important;
 }
+
 
 .mobile-menu .menu-toggle {
     display: flex;
