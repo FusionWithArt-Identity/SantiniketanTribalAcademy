@@ -199,6 +199,13 @@ header {
     display: inline-block;
 }
 
+/* INTELLIGENT FIX: Add a highlight style for any parent dropdown that is open */
+.has-dropdown.show-submenu > a {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
 .dropdown {
     position: absolute;
     top: 100%;
@@ -1435,10 +1442,9 @@ footer {
         mainContentDiv.innerHTML = contentHTML;
     }
 
-    // MODIFICATION 2: Function to close all open dropdowns
     function closeAllDropdowns() {
         document.querySelectorAll('.navbar .has-dropdown').forEach(item => {
-            item.classList.remove('show-submenu');
+            item.classList.remove('show-submenu', 'active');
         });
         document.querySelectorAll('.navbar > li').forEach(item => {
            item.classList.remove('active');
@@ -1448,9 +1454,8 @@ footer {
     navbars.forEach(navbar => {
         navbar.addEventListener('click', function(e) {
             const link = e.target.closest('a');
-            if (link && link.dataset.contentKey) {
+            if (link && !link.parentElement.classList.contains('has-dropdown') && link.dataset.contentKey) {
                 e.preventDefault();
-                // MODIFICATION 2: Close all dropdowns before loading new content
                 closeAllDropdowns();
                 loadContent(link.dataset.contentKey);
                 closeMobileMenu();
@@ -1462,6 +1467,9 @@ footer {
                 if (link.closest('li')) {
                     link.closest('li').classList.add('active');
                 }
+            } else if (link && link.dataset.contentKey) {
+                 // For dropdown parent links that also load content
+                loadContent(link.dataset.contentKey);
             }
         });
     });
@@ -1526,53 +1534,48 @@ footer {
 
     setInterval(nextSlide, 5000);
 
-    // Desktop dropdown functionality
-    const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
+    // --- INTELLIGENT & UNIFIED DESKTOP DROPDOWN LOGIC ---
+    const allDropdownLinks = document.querySelectorAll('.navbar .has-dropdown > a');
 
-    const topLevelDropdownLinks = document.querySelectorAll('.navbar > .has-dropdown > a');
-    topLevelDropdownLinks.forEach(link => {
+    allDropdownLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
 
-            const parentItem = this.parentElement;
-            const isCurrentlyOpen = parentItem.classList.contains('show-submenu');
+            const parentLi = this.parentElement;
+            const isTopLevel = parentLi.parentElement.classList.contains('navbar');
 
-            // MODIFICATION 2: Close all other top-level dropdowns
-            topLevelDropdowns.forEach(item => {
-                if (item !== parentItem) { // Don't close the one we're about to open
-                    item.classList.remove('show-submenu', 'active');
-                     // Also close nested dropdowns within other items
-                    item.querySelectorAll('.has-dropdown.show-submenu').forEach(nested => {
-                        nested.classList.remove('show-submenu');
-                    });
-                }
-            });
+            if (isTopLevel) {
+                // --- Logic for Top-Level Dropdowns ---
+                const isCurrentlyOpen = parentLi.classList.contains('show-submenu');
 
-            if (!isCurrentlyOpen) {
-                parentItem.classList.add('show-submenu', 'active');
+                // Close all OTHER top-level dropdowns and their children
+                document.querySelectorAll('.navbar > .has-dropdown').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('show-submenu', 'active');
+                        item.querySelectorAll('.has-dropdown').forEach(subItem => subItem.classList.remove('show-submenu'));
+                    }
+                });
+
+                // Toggle the current top-level dropdown
+                parentLi.classList.toggle('show-submenu');
+                parentLi.classList.toggle('active');
+
             } else {
-                 parentItem.classList.remove('show-submenu', 'active');
+                // --- Logic for Nested Dropdowns ---
+                // Get siblings at the same nested level
+                const siblings = [...parentLi.parentElement.children];
+                siblings.forEach(sibling => {
+                    if (sibling !== parentLi && sibling.classList.contains('has-dropdown')) {
+                        // Close sibling dropdowns and all their children to prevent multiple paths being open
+                        sibling.classList.remove('show-submenu');
+                        sibling.querySelectorAll('.has-dropdown').forEach(subItem => subItem.classList.remove('show-submenu'));
+                    }
+                });
+
+                // Toggle the current nested dropdown
+                parentLi.classList.toggle('show-submenu');
             }
-        });
-    });
-
-    const secondLevelDropdowns = document.querySelectorAll('.dropdown .has-dropdown > a');
-    secondLevelDropdowns.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const parentItem = this.parentElement;
-
-            const siblings = Array.from(parentItem.parentElement.children);
-            siblings.forEach(sibling => {
-                if (sibling !== parentItem && sibling.classList.contains('has-dropdown')) {
-                    sibling.classList.remove('show-submenu');
-                }
-            });
-
-            parentItem.classList.toggle('show-submenu');
         });
     });
 
@@ -1580,16 +1583,11 @@ footer {
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.navbar')) {
             closeAllDropdowns();
-            // Also remove the active state from the home button if no dropdown is open
+            // Re-highlight the home button when everything is closed
             const homeButton = document.querySelector('.navbar li a[data-content-key="home"]').closest('li');
-            if(homeButton && !document.querySelector('.navbar .show-submenu')) {
-               // Logic to re-highlight the active page could go here if needed
-            } else {
-                homeButton.classList.add('active'); // Default to home active if nothing else is
-            }
+            homeButton.classList.add('active');
         }
     });
-
 
     // Mobile menu functionality
     const navbarToggle = document.querySelector('.navbar-toggle');
