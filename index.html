@@ -212,6 +212,11 @@ header {
     transform: translateY(0);
 }
 
+/* MODIFIED: Removed hover state for dropdowns. They now open on click. */
+.has-dropdown:hover > .dropdown {
+    /* Removed */
+}
+
 .dropdown li {
     position: relative;
 }
@@ -1362,21 +1367,46 @@ footer {
     
     setInterval(nextSlide, 5000);
     
-    // Desktop dropdown functionality
+    // MODIFIED: Desktop dropdown functionality now uses click
     const topLevelDropdowns = document.querySelectorAll('.navbar > .has-dropdown');
     
+    // Add hover effect for background color
     topLevelDropdowns.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.classList.add('show-submenu');
+            this.classList.add('active-hover');
         });
-        
         item.addEventListener('mouseleave', function() {
-            this.classList.remove('show-submenu');
+            this.classList.remove('active-hover');
+        });
+    });
+
+    // Add click to toggle dropdown visibility
+    const topLevelDropdownLinks = document.querySelectorAll('.navbar > .has-dropdown > a');
+    topLevelDropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const parentItem = this.parentElement;
+            const isCurrentlyOpen = parentItem.classList.contains('show-submenu');
+
+            // Close all other top-level dropdowns
+            topLevelDropdowns.forEach(item => {
+                item.classList.remove('show-submenu');
+                item.classList.remove('active');
+                // Also close nested dropdowns
+                const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
+                nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
+            });
+
+            if (!isCurrentlyOpen) {
+                parentItem.classList.add('show-submenu');
+                parentItem.classList.add('active');
+            }
         });
     });
 
     const secondLevelDropdowns = document.querySelectorAll('.dropdown .has-dropdown > a');
-    
     secondLevelDropdowns.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1395,16 +1425,19 @@ footer {
         });
     });
 
+    // Close all dropdowns when clicking anywhere outside the navbar
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.has-dropdown')) {
-            document.querySelectorAll('.has-dropdown.show-submenu').forEach(item => {
-                if (item.closest('.dropdown')) {
-                    item.classList.remove('show-submenu');
-                }
+        if (!e.target.closest('.navbar')) {
+            topLevelDropdowns.forEach(item => {
+                item.classList.remove('show-submenu');
+                item.classList.remove('active');
+                // Also close nested dropdowns
+                const nestedSubmenus = item.querySelectorAll('.has-dropdown.show-submenu');
+                nestedSubmenus.forEach(nested => nested.classList.remove('show-submenu'));
             });
         }
     });
-    
+
     // Mobile menu functionality
     const navbarToggle = document.querySelector('.navbar-toggle');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
