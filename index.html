@@ -119,10 +119,10 @@ header {
     margin: 8px 0;
 }
 
-/* UPDATED: Professionalized Navbar Styles */
+/* NEW: Professional Navigation Bar Styles */
 .navbar-container {
     background-color: var(--light-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Softer shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Softer shadow */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -133,12 +133,12 @@ header {
     justify-content: center;
     list-style: none;
     position: relative;
-    padding: 0; /* Adjusted padding */
+    padding: 0; /* Remove padding from the ul */
 }
 
 .navbar > li {
     position: relative;
-    margin: 0 2px; /* Add margin for separation instead of border */
+    border-right: 1px solid rgba(0, 0, 0, 0.08); /* Subtle border */
 }
 
 .navbar > li:last-child {
@@ -149,50 +149,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 20px; /* Increased padding for a more professional feel */
+    padding: 10px 15px; /* Adjusted padding for a more compact and professional look */
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
     font-size: 14px;
-    position: relative;
-    overflow: hidden;
 }
-
-/* Professional Hover Effect */
-.navbar > li > a::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--primary-color);
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-}
-
-.navbar > li:hover > a::before,
-.navbar > li.active > a::before {
-    transform: scaleX(1);
-}
-
-.navbar > li:hover > a,
-.navbar > li.active > a {
-    background-color: transparent;
-    color: var(--primary-color);
-}
-
-.navbar > li:hover > a,
-.navbar > li.active > a {
-    color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.navbar > li.active > a {
-    background-color: transparent;
-}
-
 
 /* Style for the home audio icon */
 .home-audio-toggle {
@@ -205,6 +168,13 @@ header {
 .home-audio-toggle:focus,
 .home-audio-toggle:active {
     color: #FFF5B8 !important;
+}
+
+/* MODIFIED: Highlight state for parent tabs */
+.navbar > li:hover > a, 
+.navbar > li.active > a {
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 .has-dropdown > a {
@@ -231,33 +201,33 @@ header {
     display: inline-block;
 }
 
-/* Professionalized Dropdown Menu Styles */
+/* NEW: Professional Dropdown Styles */
 .dropdown {
     position: absolute;
-    top: calc(100% + 5px); /* Adjusted to sit just below the nav bar */
+    top: 100%;
     left: 0;
-    background-color: #fff; /* Use white for a cleaner look */
-    min-width: 600px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Deeper, more professional shadow */
+    background-color: var(--light-color);
+    min-width: 650px; /* Slightly wider for better content display */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     list-style: none;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
     z-index: 1000;
-    padding: 10px; /* Increased padding */
+    padding: 10px; /* Slightly more padding */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px; /* Adjusted gap */
-    border-radius: 5px;
-    border-top: 3px solid var(--secondary-color); /* Thicker top border */
+    gap: 8px; /* Slightly more gap */
+    border-top: 2px solid var(--secondary-color);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .dropdown .dropdown {
     background-color: var(--tertiary-color);
-    border: none;
+    border: 1px solid var(--secondary-color);
     border-left: 2px solid var(--primary-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Lighter shadow for nested menus */
 }
 
 .has-dropdown.show-submenu > .dropdown {
@@ -275,15 +245,15 @@ header {
     position: relative;
 }
 
-/* MODIFIED: Reduced padding for dropdown links */
+/* MODIFIED: Professional Dropdown Link Styles */
 .dropdown li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Adjusted padding */
+    padding: 10px 10px;
     color: var(--dark-color);
     text-decoration: none;
-    border: none;
+    border: none; /* Removed border */
     border-radius: 4px;
     transition: all 0.3s ease;
     text-align: center;
@@ -292,30 +262,29 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 13px;
-    position: relative;
-    overflow: hidden;
 }
 
 .dropdown li a:hover,
 .dropdown li a:focus,
 .dropdown li a:active {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: white;
-    transform: none; /* Remove transform for dropdown items */
-    box-shadow: none;
+    transform: none; /* Removed aggressive transform */
+    box-shadow: none; /* Removed aggressive shadow */
 }
 
 .navbar > li.show-submenu > a {
-    background-color: transparent;
-    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 /* MODIFIED: Adjusted nested dropdown positioning for smoother hover */
 .dropdown .has-dropdown > .dropdown {
-    top: 0; 
+    position: absolute;
+    top: 0; /* Changed from -10px to 0 for a more professional hover feel */
     left: 100%;
     margin-left: 1px;
-    transform: translateY(0);
+    transform: translateY(0); /* Removed the translateY for cleaner positioning */
     grid-template-columns: repeat(2, 1fr);
     min-width: 350px;
     border-left: 2px solid var(--primary-color);
