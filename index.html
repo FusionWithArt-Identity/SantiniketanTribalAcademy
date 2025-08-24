@@ -146,8 +146,10 @@ header {
 
 /* MODIFIED: Reduced vertical padding for navigation links */
 .navbar > li > a {
-    display: block;
-    padding: 6px 15px; /* Reduced padding for a more compact look */
+    display: flex; /* NEW: Use flexbox for centering */
+    align-items: center; /* NEW: Vertically center */
+    justify-content: center; /* NEW: Horizontally center */
+    padding: 8px 15px; /* Adjusted padding for a more compact look and better centering */
     color: var(--dark-color);
     text-decoration: none;
     font-weight: 500;
@@ -242,7 +244,9 @@ header {
 
 /* MODIFIED: Reduced padding for dropdown links */
 .dropdown li a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 10px;
     color: var(--dark-color);
     text-decoration: none;
