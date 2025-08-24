@@ -506,6 +506,9 @@ header {
 }
 .dynamic-content p {
     margin-bottom: 1rem;
+    /* FIX 1: Added word-wrap to prevent overflow on small screens */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 .dynamic-content .media-container {
     display: grid;
@@ -660,6 +663,9 @@ footer {
 
 .contact-info p {
     margin-bottom: 5px;
+    /* FIX 2: Added word-wrap to prevent overflow on small screens */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .footer-links {
@@ -1404,7 +1410,7 @@ footer {
             contentHTML = `
                 <div class="dynamic-content">
                     <h2>${content.title}</h2>
-                    <p>${content.text}</p>
+                    <div>${content.text}</div>
                     ${mediaSection}
                     ${content.button ? `<a href="${content.button.href}" class="donate-button" style="display:inline-block; margin-top: 15px;">${content.button.text}</a>` : ''}
                 </div>
@@ -1715,12 +1721,3 @@ footer {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
