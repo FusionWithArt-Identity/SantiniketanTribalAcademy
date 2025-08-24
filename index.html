@@ -128,14 +128,18 @@ header {
     font-size: 14px;
 }
 
-/* Style for the new home icon */
-.navbar > li > a #home-icon-audio {
+/* Style for the home audio icon */
+.home-audio-toggle {
     margin-right: 6px;
     cursor: pointer;
     transition: color 0.3s ease;
 }
-.navbar > li > a #home-icon-audio:hover {
-    color: var(--accent-color);
+
+/* MODIFICATION: New color for hover/active/focus states */
+.home-audio-toggle:hover,
+.home-audio-toggle:focus,
+.home-audio-toggle:active {
+    color: #FFF5B8 !important; /* Use !important to override parent link hover styles */
 }
 
 
@@ -871,7 +875,7 @@ footer {
     <div class="navbar-container">
         <div class="container">
             <ul class="navbar">
-                <li><a href="#" data-content-key="home"><i class="fas fa-home" id="home-icon-audio"></i>Home</a></li>
+                <li><a href="#" data-content-key="home"><i class="fas fa-home home-audio-toggle"></i>Home</a></li>
                 
                 <li class="has-dropdown">
                     <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
@@ -1148,8 +1152,6 @@ footer {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     // --- Content Data Model ---
-    // This object holds all the content for the dynamic pages.
-    // You can add or modify content here easily without changing the HTML structure.
     const contentData = {
         'home': {
             title: 'Welcome to Sports Talent Academy',
@@ -1197,7 +1199,6 @@ footer {
         if (content) {
             let mediaSection = '';
             
-            // Check for and add images
             if (content.images && content.images.length > 0) {
                 const imageHTML = content.images.map(img => `
                     <div class="media-item">
@@ -1208,7 +1209,6 @@ footer {
                 mediaSection += `<div class="media-container">${imageHTML}</div>`;
             }
             
-            // Check for and add videos
             if (content.videos && content.videos.length > 0) {
                 const videoHTML = content.videos.map(vid => `
                     <div class="media-item">
@@ -1222,7 +1222,6 @@ footer {
                 mediaSection += `<div class="media-container">${videoHTML}</div>`;
             }
 
-            // Build the final HTML for the content area
             contentHTML = `
                 <div class="dynamic-content">
                     <h2>${content.title}</h2>
@@ -1232,7 +1231,6 @@ footer {
                 </div>
             `;
         } else {
-            // Default placeholder content if key is not found
             contentHTML = `
                 <div class="content-placeholder">
                     <i class="fas fa-file-alt"></i>
@@ -1250,16 +1248,14 @@ footer {
         navbar.addEventListener('click', function(e) {
             const link = e.target.closest('a');
             if (link && link.dataset.contentKey) {
-                e.preventDefault(); // Prevent default link behavior
+                e.preventDefault(); 
                 loadContent(link.dataset.contentKey);
-                closeMobileMenu(); // Close the menu on mobile after selection
+                closeMobileMenu(); 
 
-                // Remove active class from all nav items
                 document.querySelectorAll('.navbar li').forEach(item => {
                     item.classList.remove('active');
                 });
                 
-                // Add active class to the clicked list item
                 if (link.closest('li')) {
                     link.closest('li').classList.add('active');
                 }
@@ -1267,22 +1263,29 @@ footer {
         });
     });
 
-    // Initial content load on page load
+    // Initial content load
     loadContent('home');
     document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
 
-    // --- MODIFICATION: Audio Toggle for Home Icon ---
-    const homeIconAudio = document.getElementById('home-icon-audio');
+    // --- MODIFICATION: Audio Toggle for Home Icon (Desktop and Mobile) ---
     const webTune = document.getElementById('Web-tune');
-
-    if (homeIconAudio && webTune) {
-        homeIconAudio.addEventListener('click', function(e) {
-            e.stopPropagation(); // Stop the event from bubbling up to the main navbar listener that changes content
-
-            if (webTune.paused) {
-                webTune.play();
-            } else {
-                webTune.pause();
+    if (webTune) {
+        document.body.addEventListener('click', function(e) {
+            // Check if the clicked element has the 'home-audio-toggle' class
+            if (e.target.classList.contains('home-audio-toggle')) {
+                e.stopPropagation(); // Stop the event from bubbling up to the link's content-loading listener
+                
+                if (webTune.paused) {
+                    // Attempt to play and catch any errors (e.g., autoplay blocked)
+                    const playPromise = webTune.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.error("Audio play failed:", error);
+                        });
+                    }
+                } else {
+                    webTune.pause();
+                }
             }
         });
     }
@@ -1506,4 +1509,3 @@ footer {
     </script>
 </body>
 </html>
-
