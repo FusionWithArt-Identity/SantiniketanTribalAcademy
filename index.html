@@ -128,6 +128,17 @@ header {
     font-size: 14px;
 }
 
+/* Style for the new home icon */
+.navbar > li > a #home-icon-audio {
+    margin-right: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.navbar > li > a #home-icon-audio:hover {
+    color: var(--accent-color);
+}
+
+
 .navbar > li:hover > a, 
 .navbar > li.active > a,
 .has-dropdown.show-submenu > a {
@@ -830,6 +841,8 @@ footer {
     </style>
 </head>
 <body>
+    <audio id="Web-tune" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+    
     <header>
         <img src="Header.jpg" alt="Header Background" class="header-bg">
         <div class="container">
@@ -858,7 +871,7 @@ footer {
     <div class="navbar-container">
         <div class="container">
             <ul class="navbar">
-                <li><a href="#" data-content-key="home">Home</a></li>
+                <li><a href="#" data-content-key="home"><i class="fas fa-home" id="home-icon-audio"></i>Home</a></li>
                 
                 <li class="has-dropdown">
                     <a href="#">About <i class="fas fa-chevron-down"></i><span class="equals-icon">=</span></a>
@@ -1257,6 +1270,22 @@ footer {
     // Initial content load on page load
     loadContent('home');
     document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
+
+    // --- MODIFICATION: Audio Toggle for Home Icon ---
+    const homeIconAudio = document.getElementById('home-icon-audio');
+    const webTune = document.getElementById('Web-tune');
+
+    if (homeIconAudio && webTune) {
+        homeIconAudio.addEventListener('click', function(e) {
+            e.stopPropagation(); // Stop the event from bubbling up to the main navbar listener that changes content
+
+            if (webTune.paused) {
+                webTune.play();
+            } else {
+                webTune.pause();
+            }
+        });
+    }
     
     // Carousel functionality
     const slides = document.querySelectorAll('.carousel-slide');
