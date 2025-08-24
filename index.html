@@ -1440,6 +1440,9 @@ footer {
         }
 
         mainContentDiv.innerHTML = contentHTML;
+
+        // MODIFICATION: Scroll the main content area into view after loading.
+        mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function closeAllDropdowns() {
