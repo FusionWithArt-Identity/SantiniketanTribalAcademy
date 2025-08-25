@@ -1326,6 +1326,26 @@ footer {
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+    /**
+     * NEW: Helper function to get the dynamic height of the currently visible sticky header.
+     * It intelligently checks which navigation bar (desktop or mobile) is active based on CSS display properties.
+     */
+    function getStickyHeaderHeight() {
+        const navbarContainer = document.querySelector('.navbar-container');
+        const menuBarContainer = document.querySelector('.menu-bar-container');
+        
+        // On desktop screens, the mobile menu-bar-container is hidden by CSS media queries.
+        // We return the height of the main navbar container.
+        if (window.getComputedStyle(menuBarContainer).display === 'none') {
+            return navbarContainer.offsetHeight;
+        } 
+        // On mobile screens, the menu-bar-container is visible and sticky.
+        // We return its height.
+        else {
+            return menuBarContainer.offsetHeight;
+        }
+    }
+
     // --- Content Data Model ---
     const contentData = {
         'home': {
@@ -1441,9 +1461,20 @@ footer {
         }
 
         mainContentDiv.innerHTML = contentHTML;
-        // Scroll to the content area only if the content is not 'home'
+
+        // --- UPDATED: Intelligent scroll logic ---
+        // This block replaces the original scrollIntoView() to prevent the nav bar from covering the content.
         if (contentKey !== 'home') {
-            mainContentDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const headerHeight = getStickyHeaderHeight();
+            const elementPosition = mainContentDiv.getBoundingClientRect().top + window.pageYOffset;
+            
+            // Calculate the final scroll position, subtracting the header's height and adding a 15px margin for breathing room.
+            const offsetPosition = elementPosition - headerHeight - 15;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
     }
 
@@ -1776,4 +1807,3 @@ footer {
     </script>
 </body>
 </html>
-
