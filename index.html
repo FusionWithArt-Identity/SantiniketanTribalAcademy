@@ -1412,7 +1412,7 @@ footer {
     const mainContentDiv = document.getElementById('main-content');
     const navbars = document.querySelectorAll('.navbar, .mobile-menu');
 
-    function loadContent(contentKey) {
+    function loadContent(contentKey, shouldScroll = true) {
         const content = contentData[contentKey];
         let contentHTML = '';
 
@@ -1463,8 +1463,8 @@ footer {
         mainContentDiv.innerHTML = contentHTML;
 
         // --- UPDATED: Intelligent scroll logic ---
-        // This block replaces the original scrollIntoView() to prevent the nav bar from covering the content.
-        if (contentKey !== 'home') {
+        // This block now only runs when explicitly told to, preventing automatic scrolling on page refresh.
+        if (shouldScroll && contentKey !== 'home') {
             const headerHeight = getStickyHeaderHeight();
             const elementPosition = mainContentDiv.getBoundingClientRect().top + window.pageYOffset;
             
@@ -1529,27 +1529,41 @@ footer {
     });
 
     // --- PAGE INITIALIZATION LOGIC ---
-    // Check for saved state in sessionStorage on page load
+    // This listener saves the user's exact scroll position just before the page is refreshed or closed.
+    window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    });
+
+    // Check for saved content state and scroll position in sessionStorage on page load
     const savedContentKey = sessionStorage.getItem('currentContentKey');
+    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+
     if (savedContentKey) {
-        // If state is found, load that content
-        loadContent(savedContentKey);
+        // If a content state is found, load that content WITHOUT triggering the auto-scroll.
+        loadContent(savedContentKey, false);
         
         // Find the active link to determine which top-level tab to highlight.
         const activeLink = document.querySelector(`.navbar a[data-content-key="${savedContentKey}"]`);
         if (activeLink) {
             // Find the top-level list item that contains the active link.
             const topLevelLi = activeLink.closest('.navbar > li');
-
             // If a top-level li is found, add the 'active' class to it.
             if (topLevelLi) {
                 topLevelLi.classList.add('active');
             }
         }
+        
+        // If a scroll position was saved from the previous session, restore it.
+        // This ensures the user is returned to their exact spot after a refresh.
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition, 10));
+            // Clear the scroll position so it's not accidentally used again.
+            sessionStorage.removeItem('scrollPosition');
+        }
 
     } else {
-        // If no state is found (first visit or after clicking home), load the default 'home' content
-        loadContent('home');
+        // If no state is found (first visit or after clicking home), load the default 'home' content.
+        loadContent('home', false); // Load without auto-scrolling.
         document.querySelector('.navbar li a[data-content-key="home"]').closest('li').classList.add('active');
     }
 
