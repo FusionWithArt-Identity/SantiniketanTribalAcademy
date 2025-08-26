@@ -527,7 +527,8 @@ header {
 }
 .dynamic-content .media-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* INTELLIGENT FIX: This allows grid items to shrink below their minimum size on very small screens, preventing overflow. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 15px;
     margin-top: 15px;
 }
@@ -1020,14 +1021,6 @@ footer {
 
     .slide-description {
         font-size: 0.8rem;
-    }
-}
-
-/* --- VERY SMALL MOBILE STYLES --- */
-@media (max-width: 360px) {
-    .dynamic-content .media-container {
-        /* Switch to a single column to prevent grid items from overflowing the container. */
-        grid-template-columns: 1fr;
     }
 }
     </style>
