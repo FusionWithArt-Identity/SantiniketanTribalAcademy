@@ -46,6 +46,7 @@ body {
     font-size: 14px;
     position: relative;
     scroll-behavior: smooth; /* Added for smooth scrolling */
+    overflow-x: hidden; /* NEW: Prevents horizontal scrolling caused by any overflowing elements */
 }
 
 .container {
@@ -1019,6 +1020,14 @@ footer {
 
     .slide-description {
         font-size: 0.8rem;
+    }
+}
+
+/* --- VERY SMALL MOBILE STYLES --- */
+@media (max-width: 360px) {
+    .dynamic-content .media-container {
+        /* Switch to a single column to prevent grid items from overflowing the container. */
+        grid-template-columns: 1fr;
     }
 }
     </style>
